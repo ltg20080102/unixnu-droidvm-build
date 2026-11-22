@@ -199,8 +199,11 @@ jobs:
               grant(module, 'apex_available', '"com.android.virt",')
           path.write_text(''.join(lines))
           PY
-          grep -n -A2 'name: "libcrypto_static"' external/boringssl/Android.bp
-          grep -n -A6 'name: "libcrypto_static"' external/boringssl/Android.bp | grep -A6 apex_available
+          # a diagnostic only: the workflow's shell is bash -eo pipefail, so a grep that finds
+          # nothing (libcrypto_static lists ~35 visibility entries before apex_available) would
+          # fail the step and stop the build right here.
+          awk '/name: "libcrypto_static"/{f=1} f{print} f&&/^}/{exit}' external/boringssl/Android.bp \
+            | grep -nE 'name:|visibility:|apex_available:|libdatachannel|com\.android\.virt' || true
       - name: Stop here (stage=prepare)
         if: inputs.stage == 'prepare'
         run: |
