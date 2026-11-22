@@ -51,9 +51,7 @@
 # Reporting hooks (the Actions log API needs admin rights):
 #   ::warning:: annotations, plus status/run-<id>.md committed back with full.log whole.
 #   The build logs live under UniXNU/out/droidvm/build-all/logs (NOT under the device repository).
-
 name: build droidvm release
-
 on:
   workflow_dispatch:
     inputs:
@@ -82,10 +80,8 @@ on:
   push:
     paths:
       - "trigger/**"
-
 permissions:
   contents: write
-
 env:
   BOARD: droidvm
   IPSW_BUILD: "21H461"
@@ -99,16 +95,13 @@ env:
   HOMEBREW_NO_AUTO_UPDATE: 1
   HOMEBREW_NO_INSTALL_CLEANUP: 1
   HOMEBREW_NO_ENV_HINTS: 1
-
 defaults:
   run:
     shell: bash
-
 jobs:
   build:
     runs-on: macos-26
     timeout-minutes: 350
-
     steps:
       - name: Check out the ci harness (overlay + board scripts)
         uses: actions/checkout@v4
@@ -117,7 +110,6 @@ jobs:
           ref: main
           path: ci
           persist-credentials: false
-
       - name: Check out UniXNU (Droid-VM fork)
         uses: actions/checkout@v4
         with:
@@ -126,7 +118,6 @@ jobs:
           path: UniXNU
           submodules: recursive
           persist-credentials: false
-
       - name: Check out the device repository
         uses: actions/checkout@v4
         with:
@@ -135,11 +126,9 @@ jobs:
           path: UniXNU-droidvm
           submodules: recursive
           persist-credentials: false
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
-
       - name: Pick Xcode and report the toolchain
         run: |
           if [ -n "$XCODE" ]; then sudo xcode-select -s "/Applications/Xcode_${XCODE}.app"; fi
@@ -151,7 +140,6 @@ jobs:
           XCODE_VER="$(xcodebuild -version | tr '\n' ' ')"
           SDK_VER="$(xcrun --sdk iphoneos --show-sdk-version 2>/dev/null)"
           echo "::warning::toolchain | ${XCODE_VER}| iPhoneOS SDK ${SDK_VER} | macOS $(sw_vers -productVersion) $(uname -m) | stage=${STAGE}"
-
       # shaderc gives glslc (gen-turnip-smoke-shaders.py needs it); glslang only gives glslangValidator.
       # The metal2vulkan bridge runs `cargo +1.98.0`, so the iOS std has to be added TO THAT TOOLCHAIN;
       # adding it to the default toolchain does nothing. Nothing is added to PATH except bison/flex.
@@ -184,7 +172,6 @@ jobs:
           done
           printf '%-18s %s\n' sed "$(command -v sed) (BSD must come first)"
           if [ -n "$MISSING" ]; then echo "::warning::missing host tools:$MISSING"; else echo "::warning::host tools OK"; fi
-
       - name: Apply the overlay and derive the reference device
         run: |
           git -C UniXNU-droidvm log --oneline -1 | tee "$RUNNER_TEMP/overlay.log"
@@ -204,25 +191,21 @@ jobs:
           grep -n 'EXTRA_LD_ARCHIVES' UniXNU-droidvm/configs/${BOARD}_defconfig | tee -a "$RUNNER_TEMP/overlay.log"
           echo "--- device-ref EXTRA_LD_ARCHIVES (must be empty) ---" | tee -a "$RUNNER_TEMP/overlay.log"
           grep -n 'EXTRA_LD_ARCHIVES' device-ref/configs/${BOARD}_defconfig | tee -a "$RUNNER_TEMP/overlay.log"
-
       - name: Cache the Apple source feed
         uses: actions/cache@v4
         with:
           path: UniXNU/out/feeds
           key: feeds-${{ hashFiles('UniXNU/feeds.toml', 'UniXNU-droidvm/feeds.toml') }}
-
       - name: Cache the extracted IPSW members
         uses: actions/cache@v4
         with:
           path: UniXNU/out/ipsw
           key: ipsw-${{ env.IPSW_BUILD }}
-
       - name: Introspect (stage kernel)
         if: env.STAGE == 'kernel'
         working-directory: UniXNU-droidvm
         run: |
           python3 scripts/build-droidvm-all.py --list 2>&1 | tee "$RUNNER_TEMP/steps.log"
-
       # The reference candidate: this board's kernel with the native storage / display / owner-root
       # drivers off, built from device-ref. The storage audit reads it while the real kernel links.
       - name: Build the reference candidate (stage full)
@@ -239,7 +222,6 @@ jobs:
           cp "out/$BOARD/kernel/kernel.macho" "out/$BOARD/kernel/kernel.json" "$RUNNER_TEMP/ref/"
           ls -l "$RUNNER_TEMP/ref"
           echo "::warning::reference candidate built: $(wc -c < "$RUNNER_TEMP/ref/kernel.macho") bytes"
-
       - name: Pipeline up to data-base (stage full)
         if: env.STAGE == 'full'
         working-directory: UniXNU-droidvm
@@ -247,7 +229,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           python3 scripts/build-droidvm-all.py --to data-base 2>&1 | tee "$RUNNER_TEMP/full1.log"
-
       - name: Place the reference candidate in the tree (stage full)
         if: env.STAGE == 'full'
         run: |
@@ -260,7 +241,16 @@ jobs:
             echo "== $ref"
             ls -l "$ref"
           done
-
+      - name: Clear the Mesa build directories (a cross file only applies at meson setup)
+        if: env.STAGE == 'full'
+        run: |
+          shopt -s nullglob
+          for d in UniXNU/out/droidvm/tree/.cache/mesa-tu-*; do
+            echo "removing $d"
+            rm -rf "$d"
+          done
+          rm -rf UniXNU/out/droidvm/tree/.cache/mesa-work/build
+          ls -d UniXNU/out/droidvm/tree/.cache/mesa-* 2>/dev/null || echo "no mesa build dirs left"
       - name: Pipeline from kernel to images (stage full)
         if: env.STAGE == 'full'
         working-directory: UniXNU-droidvm
@@ -280,7 +270,22 @@ jobs:
           else
             python3 scripts/build-droidvm-all.py --unique-chip-id "$chip" --from kernel 2>&1 | tee "$RUNNER_TEMP/full.log"
           fi
-
+      - name: Dump the build logs when it failed
+        if: failure() && env.STAGE == 'full'
+        run: |
+          set +e
+          shopt -s nullglob
+          for f in UniXNU/out/droidvm/build-all/logs/*.log UniXNU/out/droidvm/tree/.cache/mesa-tu-*.log; do
+            echo "===== $f ($(wc -l < "$f") lines)"
+            echo "----- head (meson setup) -----"
+            sed -n '1,60p' "$f"
+            echo "----- first errors -----"
+            grep -nE "error:|ERROR:|Build type|Host machine|Cross file|Program .* found" "$f" | head -40
+            echo "----- tail -----"
+            tail -n 60 "$f"
+          done
+          echo "===== end of dump"
+          exit 0
       - name: Show what came out (stage full)
         if: always() && env.STAGE == 'full'
         working-directory: UniXNU-droidvm
@@ -297,7 +302,6 @@ jobs:
             echo "::warning::stage full produced NO release directory under ../UniXNU/out/droidvm"
           fi
           df -h "$RUNNER_TEMP" || true
-
       - name: Pack and encrypt (stage full)
         id: pack
         if: always() && env.STAGE == 'full'
@@ -334,7 +338,6 @@ jobs:
                 -out "$RUNNER_TEMP/droidvm-release.tgz.enc"
           ls -lh "$RUNNER_TEMP/droidvm-release.tgz.enc"
           echo "ok=1" >> "$GITHUB_OUTPUT"
-
       - name: Upload the encrypted release
         if: always() && steps.pack.outputs.ok == '1'
         uses: actions/upload-artifact@v4
@@ -343,7 +346,6 @@ jobs:
           path: ${{ runner.temp }}/droidvm-release.tgz.enc
           compression-level: 0
           retention-days: 7
-
       - name: Publish a run report into the repo
         if: always()
         env:
