@@ -159,10 +159,12 @@ jobs:
           done
           echo "=== the crosvm tree we are about to build ==="
           git -C external/crosvm log --oneline -3
-      # soong refuses libdatachannel_srtp's host variant: it links libcrypto_static, whose visibility
-      # list in external/boringssl/Android.bp does not name the crosvm copy of libdatachannel. Grant
-      # exactly that one path inside that module's own visibility list (soong's own suggestion).
-      - name: Let the crosvm libdatachannel see boringssl's libcrypto_static
+      # The crosvm fork vendors libdatachannel into external/crosvm/third_party and lists it in the
+      # com.android.virt APEX. AOSP's boringssl curates both the visibility and the apex_available of
+      # libcrypto_static, and names neither. soong wants exactly these entries:
+      #   -libdatachannel_srtp... depends on //external/boringssl:libcrypto_static which is not visible
+      #   -libcrypto_static that doesn't list the APEX under 'apex_available'
+      - name: Let the crosvm libdatachannel use boringssl's libcrypto_static
         if: inputs.stage == 'full'
         run: |
           cd "$AOSP"
@@ -170,29 +172,35 @@ jobs:
           from pathlib import Path
           path = Path('external/boringssl/Android.bp')
           lines = path.read_text().splitlines(keepends=True)
-          needle = '"//external/crosvm/third_party/libdatachannel",'
           def module_end(start):
               # an Android.bp module starts at column 0 and ends at the next such line
               for i in range(start + 1, len(lines)):
                   if lines[i][:1] not in ('', ' ', '\t') and lines[i].rstrip().endswith('{'):
                       return i
               return len(lines)
-          hits = [i for i, l in enumerate(lines) if 'name: "libcrypto_static"' in l]
-          if not hits:
-              raise SystemExit('libcrypto_static is not in this tree')
-          stop = module_end(hits[0])
-          vis = next((i for i in range(hits[0], stop) if 'visibility: [' in lines[i]), None)
-          if vis is None:
-              raise SystemExit('libcrypto_static has no inline visibility in this tree: check it by hand')
-          close = next(i for i in range(vis + 1, stop) if lines[i].strip().startswith(']'))
-          if any(needle in l for l in lines[vis:close]):
-              print('libcrypto_static already exposes the crosvm libdatachannel')
-          else:
-              lines.insert(close, '        ' + needle + '\n')
-              path.write_text(''.join(lines))
-              print('libcrypto_static visibility += //external/crosvm/third_party/libdatachannel')
+          def grant(module, prop, entry):
+              hits = [i for i, l in enumerate(lines) if 'name: "%s"' % module in l]
+              if not hits:
+                  print('%s: not in this tree, skipped' % module)
+                  return
+              stop = module_end(hits[0])
+              head = next((i for i in range(hits[0], stop) if prop + ': [' in lines[i]), None)
+              if head is None:
+                  print('%s: no inline %s, skipped' % (module, prop))
+                  return
+              close = next(i for i in range(head + 1, stop) if lines[i].strip().startswith(']'))
+              if any(entry in l for l in lines[head:close]):
+                  print('%s: %s already lists %s' % (module, prop, entry))
+                  return
+              lines.insert(close, '        ' + entry + '\n')
+              print('%s: %s += %s' % (module, prop, entry))
+          for module in ('libcrypto_static', 'libssl_static'):
+              grant(module, 'visibility', '"//external/crosvm/third_party/libdatachannel",')
+              grant(module, 'apex_available', '"com.android.virt",')
+          path.write_text(''.join(lines))
           PY
           grep -n -A2 'name: "libcrypto_static"' external/boringssl/Android.bp
+          grep -n -A6 'name: "libcrypto_static"' external/boringssl/Android.bp | grep -A6 apex_available
       - name: Stop here (stage=prepare)
         if: inputs.stage == 'prepare'
         run: |
