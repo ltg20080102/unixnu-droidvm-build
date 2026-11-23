@@ -33,9 +33,9 @@ on:
         description: 'running release (adb shell uname -r); used by the vermagic patch'
         default: '6.12.23-android16-5-g75e9b1c7ae7c-abogki463945075-4k'
       patch_vermagic:
-        description: 'rewrite the vermagic release string to kernel_release before upload'
+        description: 'optional: rewrite the vermagic release string (not needed when __versions is present -- the kernel skips the release field)'
         type: boolean
-        default: true
+        default: false
 
 env:
   MOD_REPO: Droid-VM/gunyah_host_mod
@@ -155,7 +155,10 @@ jobs:
           echo "=== dist ==="
           find dist -name '*.ko' -printf '%p %s bytes\n'
 
-      - name: Patch the vermagic release string
+      # Off by default: kernel/module/version.c skips the release field when the module
+      # carries __versions, so a generic DDK build already loads on the vendor kernel. Turn
+      # it on only if the trailing flags or modinfo's release have to match uname -r.
+      - name: Patch the vermagic release string (optional)
         if: inputs.patch_vermagic
         working-directory: mod
         env:
