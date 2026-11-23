@@ -1,0 +1,122 @@
+# Build DroidVM's gh_hugepage_reserve module and its Magisk/KernelSU package.
+#
+# Same DDK container images as build-gunyah-modules.yml (ghcr.io/ylarod/ddk-min:<kmi>):
+# the module resolves mm internals at runtime, so it needs the headers of one KMI, not
+# a kernel tree. The repository's own build.sh builds all seven KMIs; this workflow
+# builds the one you ask for and zips package/ into an installable module.
+name: build hugepage reserve module
+
+on:
+  workflow_dispatch:
+    inputs:
+      kmi:
+        description: 'KMI of the phone (uname -r -> 6.12.x = android16-6.12)'
+        type: choice
+        options:
+          - android16-6.12
+          - android15-6.6
+          - android14-6.1
+          - all
+        default: android16-6.12
+
+env:
+  REPO: Droid-VM/gh-hugepage-reserve
+  REF: master
+  MOD: gh_hugepage_reserve
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+
+    steps:
+      - name: What we are building
+        run: |
+          echo "kmi     ${{ inputs.kmi }}"
+          echo "runner  $(uname -a)"
+          docker version --format '{{.Server.Version}}' || true
+          df -h /
+
+      - name: Check out the module repository
+        uses: actions/checkout@v4
+        with:
+          repository: Droid-VM/gh-hugepage-reserve
+          ref: master
+          path: src
+          persist-credentials: false
+
+      - name: Reclaim the runner's disk (the DDK images are multi-GB)
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL \
+                      /usr/local/share/boost /usr/share/swift || true
+          sudo apt-get clean
+          docker image prune -af || true
+          df -h /
+
+      - name: Build the module for the selected KMI
+        working-directory: src
+        env:
+          KMI: ${{ inputs.kmi }}
+        run: |
+          set -euo pipefail
+          MOD=gh_hugepage_reserve
+          IMAGE=ghcr.io/ylarod/ddk-min
+
+          # the .ko and the userspace preflight share one ABI header, generated from the TSV
+          [ -f abi/gen_kapi.awk ] && awk -f abi/gen_kapi.awk abi/kapi_abi.tsv > abi/kapi_abi.gen.h
+
+          OUT_DIR="$PWD/package/ko/${MOD}"
+          mkdir -p "$OUT_DIR"
+
+          # <tag> <src.c>: the repository's docker_exec.sh copies /src/<src> to build/<MOD>.c
+          build_one() {
+            local tag=$1 src=$2
+            docker run --rm -v "$PWD:/src:ro" -v "${OUT_DIR}:/out_${MOD}" \
+              "${IMAGE}:${tag}" sh /src/docker_exec.sh "${src}:${MOD}" || true
+            [ -f "${OUT_DIR}/${tag}.ko" ]
+          }
+
+          if [ "$KMI" = all ]; then
+            kmis="android14-6.1 android15-6.6 android16-6.12"
+          else
+            kmis="$KMI"
+          fi
+          for tag in $kmis; do
+            echo "=== ${MOD} for ${tag}"
+            rm -f "${OUT_DIR}/${tag}.ko"
+            if build_one "$tag" gh_hugepage_reserve.c; then
+              echo "  OK (real): ${tag}"
+            elif build_one "$tag" placeholder.c; then
+              echo "  ::warning::${tag} cannot build the real module (needs 6.1+ mm internals); packaged the placeholder"
+            else
+              echo "::error::${tag} built neither the real module nor the placeholder"
+              exit 1
+            fi
+            ls -l "${OUT_DIR}/${tag}.ko"
+            docker image prune -af || true
+          done
+
+          echo "=== vermagic of what we built ==="
+          shopt -s nullglob
+          for ko in "${OUT_DIR}"/*.ko; do
+            echo "$ko: $(modinfo -F vermagic "$ko" 2>/dev/null || echo '?')"
+          done
+
+      - name: Package as a Magisk/KernelSU module
+        working-directory: src
+        run: |
+          set -euo pipefail
+          # package/ carries META-INF, module.prop, customize.sh and load.sh; the .ko lands in
+          # package/ko/<module>/<kmi>.ko. No device kapi_check binary here: load.sh fail-opens
+          # without it (the module still loads, the CMA reservoir check is skipped).
+          ls -R package | head -40
+          ( cd package && zip -qr "${GITHUB_WORKSPACE}/gh-hugepage-reserve-${{ inputs.kmi }}.zip" . )
+          ls -lh "${GITHUB_WORKSPACE}/gh-hugepage-reserve-${{ inputs.kmi }}.zip"
+
+      - name: Upload the module package
+        uses: actions/upload-artifact@v4
+        with:
+          name: gh-hugepage-reserve-${{ inputs.kmi }}
+          path: gh-hugepage-reserve-${{ inputs.kmi }}.zip
+          if-no-files-found: error
+          retention-days: 14

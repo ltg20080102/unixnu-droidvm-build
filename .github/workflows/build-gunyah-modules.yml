@@ -25,7 +25,7 @@ on:
         default: android14-6.1
       modules:
         description: 'modules (space separated: gunyah-host-share gunyah-kvcalloc gh-unmovable udmabuf nproc-guard, or all)'
-        default: 'gunyah-host-share gunyah-kvcalloc'
+        default: 'gunyah-host-share gh-unmovable udmabuf nproc-guard'
       arch:
         description: 'arch (modules are aarch64 only)'
         default: 'arm64'
