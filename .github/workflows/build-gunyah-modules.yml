@@ -1,0 +1,237 @@
+# Build DroidVM's host-side Gunyah kernel modules on a GitHub runner.
+#
+# Why a runner and not the laptop: the repo's own build.sh runs Google's DDK
+# container images (ghcr.io/ylarod/ddk-min:<kmi>), which carry the kernel headers
+# and clang for one KMI. The runner has docker preinstalled, so nothing has to be
+# installed locally -- and no GKI source tree is needed at all: every module
+# vendors the gunyah private struct layout inline.
+#
+# The kernel does not enforce module signing on the target phone, so an unsigned
+# .ko loads; what still has to match is vermagic + (with MODVERSIONS) the symbol
+# CRCs, which is exactly what the per-KMI DDK image pins.
+name: build gunyah host modules
+
+on:
+  workflow_dispatch:
+    inputs:
+      kmi:
+        description: 'KMI of the phone (uname -r -> 6.1.x = android14-6.1)'
+        type: choice
+        options:
+          - android14-6.1
+          - android15-6.6
+          - android16-6.12
+          - all
+        default: android14-6.1
+      modules:
+        description: 'modules (space separated: gunyah-host-share gunyah-kvcalloc gh-unmovable udmabuf nproc-guard, or all)'
+        default: 'gunyah-host-share gunyah-kvcalloc'
+      arch:
+        description: 'arch (modules are aarch64 only)'
+        default: 'arm64'
+      kernel_release:
+        description: 'running release (adb shell uname -r); used by the vermagic patch'
+        default: '6.12.23-android16-5-g75e9b1c7ae7c-abogki463945075-4k'
+      patch_vermagic:
+        description: 'rewrite the vermagic release string to kernel_release before upload'
+        type: boolean
+        default: true
+
+env:
+  MOD_REPO: Droid-VM/gunyah_host_mod
+  MOD_REF: droidvm
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+
+    steps:
+      - name: What we are building
+        run: |
+          echo "kmi      ${{ inputs.kmi }}"
+          echo "modules  ${{ inputs.modules }}"
+          echo "runner   $(uname -a)"
+          docker version --format '{{.Server.Version}}' || true
+          df -h /
+
+      - name: Check out the module repository
+        uses: actions/checkout@v4
+        with:
+          repository: Droid-VM/gunyah_host_mod
+          ref: droidvm
+          path: mod
+          persist-credentials: false
+
+      - name: Reclaim the runner's disk (the DDK images are multi-GB)
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL \
+                      /usr/local/share/boost /usr/share/swift || true
+          sudo apt-get clean
+          docker image prune -af || true
+          df -h /
+
+      - name: Build
+        working-directory: mod
+        env:
+          KMI: ${{ inputs.kmi }}
+          MODULES: ${{ inputs.modules }}
+        run: |
+          set -euo pipefail
+          OUT=dist
+
+          # image tag per KMI, the same three the repository's build.sh uses
+          image() {
+            case "$1" in
+              android14-6.1)   echo ghcr.io/ylarod/ddk-min:android14-6.1 ;;
+              android15-6.6)   echo ghcr.io/ylarod/ddk-min:android15-6.6 ;;
+              android16-6.12)  echo ghcr.io/ylarod/ddk-min:android16-6.12 ;;
+              *) echo "unknown KMI $1" >&2; return 1 ;;
+            esac
+          }
+
+          # build_mod <kmi> <src-dir> <src-file> <mod-name>   (body of the repo's build_mod)
+          build_mod() {
+            local kmi=$1 srcdir=$2 srcfile=$3 mod=$4 img
+            img=$(image "$kmi")
+            echo ">>> ${mod} for ${kmi} (${img})"
+            mkdir -p "${OUT}/${kmi}"
+            docker run --rm \
+              -v "${PWD}/${srcdir}:/src:ro" \
+              -v "${PWD}/${OUT}/${kmi}:/out" \
+              -e MOD="${mod}" -e SRCFILE="${srcfile}" \
+              "$img" bash -lc '
+                set -e
+                K=/opt/ddk/kdir/$(ls /opt/ddk/kdir)
+                export PATH=$(ls -d /opt/ddk/clang/clang-*)/bin:$PATH
+                B=/tmp/build; mkdir -p "$B"
+                cp "/src/${SRCFILE}" "$B/${MOD}.c"
+                cp /src/*.h "$B/" 2>/dev/null || true
+                printf "obj-m += %s.o\n" "$MOD" > "$B/Makefile"
+                make -C "$K" -j"$(nproc)" M="$B" ARCH=arm64 LLVM=1 LLVM_IAS=1 modules
+                llvm-strip -d "$B/${MOD}.ko"
+                cp "$B/${MOD}.ko" "/out/${MOD}.ko"
+              '
+            [ -f "${OUT}/${kmi}/${mod}.ko" ] || { echo "::error::${kmi}/${mod} produced no .ko"; exit 1; }
+            echo "OK ${OUT}/${kmi}/${mod}.ko ($(stat -c%s "${OUT}/${kmi}/${mod}.ko") bytes)"
+          }
+
+          # source dir/file and name suffix per module (mirrors build.sh)
+          emit() {
+            local kmi=$1 mod=$2 suffix
+            # android14-6.1 -> 6.1, the suffix the repository's own build.sh uses
+            suffix=$(echo "$kmi" | sed -E 's/^android[0-9]+-//')
+            case "$mod" in
+              gunyah-host-share)
+                if [ "$kmi" = android14-6.1 ]; then
+                  build_mod "$kmi" gunyah_host_share/GKI6.1 gunyah_share_mod.c    "gunyah-host-share-gki-${suffix}"
+                else
+                  build_mod "$kmi" gunyah_host_share/GKI6.6 gunyah_share_mod.c    "gunyah-host-share-gki-${suffix}"
+                fi ;;
+              gunyah-kvcalloc)
+                [ "$kmi" = android14-6.1 ] || { echo "$mod: 6.1 only, skipped for $kmi"; return 0; }
+                build_mod "$kmi" gunyah_kvcalloc/GKI6.1 gunyah_kvcalloc_mod.c     "gunyah-kvcalloc-gki-${suffix}" ;;
+              gh-unmovable)
+                build_mod "$kmi" gh_unmovable/GKI6.6 gh_unmovable.c               "gh-unmovable-gki-${suffix}" ;;
+              udmabuf)
+                build_mod "$kmi" udmabuf udmabuf.c                                "udmabuf-gki-${suffix}" ;;
+              nproc-guard)
+                build_mod "$kmi" nproc_guard nproc_guard.c                        "nproc-guard-gki-${suffix}" ;;
+              *) echo "::error::unknown module $mod"; exit 1 ;;
+            esac
+          }
+
+          if [ "$KMI" = all ]; then kmis="android14-6.1 android15-6.6 android16-6.12"; else kmis="$KMI"; fi
+          for k in $kmis; do
+            for m in $MODULES; do
+              if [ "$m" = all ]; then
+                for x in gunyah-host-share gunyah-kvcalloc gh-unmovable udmabuf nproc-guard; do emit "$k" "$x"; done
+              else
+                emit "$k" "$m"
+              fi
+            done
+            docker image prune -af || true   # one DDK image at a time: the runner is small
+          done
+          echo "=== dist ==="
+          find dist -name '*.ko' -printf '%p %s bytes\n'
+
+      - name: Patch the vermagic release string
+        if: inputs.patch_vermagic
+        working-directory: mod
+        env:
+          RELEASE: ${{ inputs.kernel_release }}
+        run: |
+          set -euo pipefail
+          # The phone's kernel release carries a vendor suffix (…-abogki463945075-4k) that a
+          # generic DDK build does not produce. kernel/module/version.c: "First part is kernel
+          # version, which we ignore if module has crcs" -- with __versions present only the
+          # part after the first space is compared, so rewriting the release is harmless and
+          # makes modinfo on the phone read the same string as uname -r.
+          shopt -s nullglob
+          for ko in dist/*/*.ko; do
+            before=$(modinfo -F vermagic "$ko" 2>/dev/null || echo '?')
+            python3 - "$ko" "$RELEASE" <<'PY'
+          import struct, sys
+          path, release = sys.argv[1], sys.argv[2]
+          data = bytearray(open(path, 'rb').read())
+          if data[:4] != b'\x7fELF' or data[4] != 2 or data[5] != 1:
+              sys.exit(f'{path}: not an ELF64 little-endian file')
+          shoff, = struct.unpack_from('<Q', data, 0x28)
+          shentsize, shnum, shstrndx = struct.unpack_from('<HHH', data, 0x3a)
+          raw = []
+          for i in range(shnum):
+              base = shoff + i * shentsize
+              nameoff, sh_type, _, _, offset, size = struct.unpack_from('<IIQQQQ', data, base)
+              raw.append((nameoff, sh_type, offset, size))
+          stroff = raw[shstrndx][2]
+          def name_of(off):
+              start = stroff + off
+              return bytes(data[start:data.index(b'\0', start)]).decode()
+          sections = {name_of(n): (t, o, s) for n, t, o, s in raw if t != 8}
+          if '.modinfo' not in sections:
+              sys.exit(f'{path}: no .modinfo section')
+          _, mi_off, mi_size = sections['.modinfo']
+          entries = [e for e in bytes(data[mi_off:mi_off + mi_size]).split(b'\0') if e]
+          old = None
+          for entry in entries:
+              if entry.startswith(b'vermagic='):
+                  old = entry[len(b'vermagic='):].decode()
+                  break
+          if old is None:
+              sys.exit(f'{path}: .modinfo has no vermagic')
+          flags = old.split(' ', 1)[1] if ' ' in old else ''
+          def build(rel):
+              return ('vermagic=' + rel + (' ' + flags if flags else '')).encode()
+          full = release + (' ' + flags if flags else '')
+          if full == old:
+              print(f'  {path}: vermagic already {old!r}')
+              sys.exit(0)
+          for rel in (full, release.split('-')[0]):
+              rebuilt = [e for e in entries if not e.startswith(b'vermagic=')] + [build(rel)]
+              out = b'\0'.join(rebuilt) + b'\0'
+              if len(out) <= mi_size:
+                  data[mi_off:mi_off + mi_size] = out + b'\0' * (mi_size - len(out))
+                  open(path, 'wb').write(data)
+                  print(f'  {path}: vermagic {old!r} -> {rel + (" " + flags if flags else "")!r}')
+                  if '__versions' not in sections:
+                      print('  WARNING: no __versions: the kernel compares the whole string',
+                            file=sys.stderr)
+                  if rel != full:
+                      print('  NOTE: the full string does not fit .modinfo; wrote the short '
+                            'release (loads because __versions skips the release field)',
+                            file=sys.stderr)
+                  break
+          else:
+              sys.exit(f'{path}: .modinfo too small for {full!r}')
+          PY
+            after=$(modinfo -F vermagic "$ko" 2>/dev/null || echo '?')
+            echo "  ${ko}: '${before}' -> '${after}'"
+          done
+
+      - name: Upload the modules
+        uses: actions/upload-artifact@v4
+        with:
+          name: gunyah-modules-${{ inputs.kmi }}
+          path: mod/dist/**/*.ko
+          if-no-files-found: error
+          retention-days: 14
