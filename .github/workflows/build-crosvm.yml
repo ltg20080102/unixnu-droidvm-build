@@ -260,13 +260,15 @@ jobs:
 
           # Sample memory and disk while the build runs: a step that dies at 143 leaves no other
           # evidence of whether it was memory pressure, the disk or the platform.
+          # written to the step log as well as the file: a step killed by the runner never runs
+          # its own cleanup, and the step log is what survives.
           ( while :; do
-              echo "--- $(date -u +%T)"
+              echo "--- resources $(date -u +%T)"
               free -m | head -2
               df -h / | tail -1
               ps -eo rss,comm --sort=-rss | head -5
               sleep 30
-            done ) > "$GITHUB_WORKSPACE/resources.log" 2>&1 &
+            done ) 2>&1 | tee -a "$GITHUB_WORKSPACE/resources.log" &
           WATCH=$!
 
           ALLOW_MISSING_DEPENDENCIES=true TARGET_BUILD_UNBUNDLED=true \
