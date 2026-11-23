@@ -14,7 +14,9 @@
 # The unknown here is disk, not time: an AOSP tree for one module is 96 git projects including
 # clang/rust prebuilts. So `stage: prepare` only syncs and reports the footprint, and `stage: full`
 # continues into the build. Run prepare first; the report says what the tree actually costs.
+
 name: build crosvm (virtio-mmio)
+
 on:
   workflow_dispatch:
     inputs:
@@ -32,17 +34,21 @@ on:
       jobs:
         description: 'parallelism for repo sync and soong'
         default: '4'
+
 env:
   MANIFEST_URL: https://github.com/Droid-VM/crosvm-minimal-manifest.git
   MANIFEST_FILE: crosvm-minimal.xml
   AOSP: ${{ github.workspace }}/aosp
+
 defaults:
   run:
     shell: bash
+
 jobs:
   crosvm:
     runs-on: ubuntu-24.04
     timeout-minutes: 350
+
     steps:
       # This workflow runs its own scripts (scripts/build_shim.sh, scripts/collect_crosvm.sh):
       # without a checkout $GITHUB_WORKSPACE is empty and 'Build the boot shim' exits 127
@@ -50,12 +56,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+
       - name: Check the build scripts are present
         run: |
           for f in scripts/build_shim.sh scripts/collect_crosvm.sh; do
             test -f "$GITHUB_WORKSPACE/$f" || { echo "::error::missing $f in the checkout"; exit 1; }
           done
           echo "scripts present: $(ls "$GITHUB_WORKSPACE/scripts" | tr '\n' ' ')"
+
       - name: What we are building
         run: |
           echo "stage        ${{ inputs.stage }}"
@@ -63,6 +71,7 @@ jobs:
           echo "manifest     $MANIFEST_URL @ ${{ inputs.manifest_ref }} ($MANIFEST_FILE)"
           echo "runner       $(uname -a)"
           df -h /
+
       # The runner ships ~14 GB free; an AOSP sync plus out/ does not fit in that. Everything
       # removed here is unused by this build: the tree brings its own clang/rust/jdk prebuilts,
       # so the runner's Android SDK, .NET, Haskell and cached toolchains are dead weight.
@@ -74,6 +83,20 @@ jobs:
           sudo apt-get clean
           docker image prune -af || true
           df -h /
+
+      # soong's analysis phase (soong_build over the whole module graph) is the memory peak of
+      # this build; the standard runner has 16 GB and no swap, so an 8 GB swapfile keeps it from
+      # being killed when the estimate is a little off. Disk was reclaimed a step earlier.
+      - name: Add swap for the soong analysis
+        if: inputs.stage == 'full'
+        run: |
+          sudo fallocate -l 8G /swapfile || sudo dd if=/dev/zero of=/swapfile bs=1M count=8192
+          sudo chmod 600 /swapfile
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
+          free -m
+          df -h /
+
       - name: Install build dependencies
         run: |
           sudo apt-get update -qq
@@ -83,6 +106,7 @@ jobs:
             python3 python3-venv \
             binutils-aarch64-linux-gnu
           df -h /
+
       # The shim is a bare-metal crate with its own [toolchain]: stable plus the softfloat target
       # (not plain aarch64-unknown-none -- that one carries +neon, and SIMD in a pre-MMU shim is
       # an undefined-instruction trap in a VM with no console to say so).
@@ -92,6 +116,7 @@ jobs:
           rustup target add aarch64-unknown-none-softfloat --toolchain stable
           rustc +stable --version
           cargo +stable --version
+
       - name: repo tool
         run: |
           mkdir -p "$HOME/bin"
@@ -103,6 +128,7 @@ jobs:
           git config --global color.ui false
           git config --global protocol.version 2
           "$HOME/bin/repo" --version
+
       # --depth 1: one commit per project, none of the history (the tree is 96 projects).
       # No --partial-clone: soong reads every source file, so lazy blobs would only trade disk
       # for a much slower build.
@@ -113,6 +139,7 @@ jobs:
           repo init -u "$MANIFEST_URL" -b "${{ inputs.manifest_ref }}" -m "$MANIFEST_FILE" --depth 1
           echo "--- manifest projects: $(grep -c '<project' .repo/manifests/$MANIFEST_FILE)"
           du -sh .repo
+
       # -c: current branch only; --no-tags: the trees have no use for tags; --force-sync so a
       # re-run repairs a half-finished sync instead of tripping over it.
       - name: repo sync
@@ -121,6 +148,7 @@ jobs:
           time repo sync -c -j"${{ inputs.jobs }}" --no-tags --force-sync --optimized-fetch
           df -h /
           du -sh "$AOSP"
+
       - name: Disk report after the sync
         if: always()
         run: |
@@ -130,6 +158,7 @@ jobs:
           echo "=== prebuilts (the heavy part) ==="
           du -sh "$AOSP"/prebuilts/* 2>/dev/null | sort -rh | head -10 || true
           df -h /
+
       # Branch chain, the way droidvm-meta-repo/lib_branch.sh resolves it: the work's branch
       # first, the org's stable branch second, the manifest revision if neither exists. Only the
       # forks that carry the mmio work move; the rest stay on droidvm.
@@ -159,6 +188,7 @@ jobs:
           done
           echo "=== the crosvm tree we are about to build ==="
           git -C external/crosvm log --oneline -3
+
       # The crosvm fork vendors libdatachannel into external/crosvm/third_party and lists it in the
       # com.android.virt APEX. AOSP's boringssl curates both the visibility and the apex_available of
       # libcrypto_static, and names neither. soong wants exactly these entries:
@@ -172,12 +202,14 @@ jobs:
           from pathlib import Path
           path = Path('external/boringssl/Android.bp')
           lines = path.read_text().splitlines(keepends=True)
+
           def module_end(start):
               # an Android.bp module starts at column 0 and ends at the next such line
               for i in range(start + 1, len(lines)):
                   if lines[i][:1] not in ('', ' ', '\t') and lines[i].rstrip().endswith('{'):
                       return i
               return len(lines)
+
           def grant(module, prop, entry):
               hits = [i for i, l in enumerate(lines) if 'name: "%s"' % module in l]
               if not hits:
@@ -194,6 +226,7 @@ jobs:
                   return
               lines.insert(close, '        ' + entry + '\n')
               print('%s: %s += %s' % (module, prop, entry))
+
           for module in ('libcrypto_static', 'libssl_static'):
               grant(module, 'visibility', '"//external/crosvm/third_party/libdatachannel",')
               grant(module, 'apex_available', '"com.android.virt",')
@@ -204,15 +237,18 @@ jobs:
           # fail the step and stop the build right here.
           awk '/name: "libcrypto_static"/{f=1} f{print} f&&/^}/{exit}' external/boringssl/Android.bp \
             | grep -nE 'name:|visibility:|apex_available:|libdatachannel|com\.android\.virt' || true
+
       - name: Stop here (stage=prepare)
         if: inputs.stage == 'prepare'
         run: |
           echo "sync only: the crosvm build was not started (stage=prepare)."
           df -h /
+
       # crosvm include_bytes!s the shim, so it has to exist before soong compiles the tree.
       - name: Build the boot shim
         if: inputs.stage == 'full'
         run: bash "${{ github.workspace }}/scripts/build_shim.sh" "$AOSP"
+
       - name: Build crosvm_device_only
         if: inputs.stage == 'full'
         run: |
@@ -221,9 +257,29 @@ jobs:
           source build/envsetup.sh
           lunch aosp_arm64 trunk_staging eng || lunch aosp_arm64-trunk_staging-eng
           df -h /
-          time ALLOW_MISSING_DEPENDENCIES=true TARGET_BUILD_UNBUNDLED=true \
+
+          # Sample memory and disk while the build runs: a step that dies at 143 leaves no other
+          # evidence of whether it was memory pressure, the disk or the platform.
+          ( while :; do
+              echo "--- $(date -u +%T)"
+              free -m | head -2
+              df -h / | tail -1
+              ps -eo rss,comm --sort=-rss | head -5
+              sleep 30
+            done ) > "$GITHUB_WORKSPACE/resources.log" 2>&1 &
+          WATCH=$!
+
+          ALLOW_MISSING_DEPENDENCIES=true TARGET_BUILD_UNBUNDLED=true \
             m crosvm_device_only -j"${{ inputs.jobs }}" 2>&1 | tee "$GITHUB_WORKSPACE/build.log"
+          RC=${PIPESTATUS[0]}
+
+          kill "$WATCH" 2>/dev/null || true
+          echo "=== resources (tail) ==="
+          tail -40 "$GITHUB_WORKSPACE/resources.log" || true
+          echo "=== disk after the build ==="
           df -h /
+          exit "$RC"
+
       - name: Collect crosvm and the libraries it links
         if: inputs.stage == 'full'
         run: |
@@ -236,6 +292,7 @@ jobs:
           [ "$n" -gt 0 ] || { echo "::error::the built crosvm has no virtio-mmio in it"; exit 1; }
           ls -l "${{ github.workspace }}/dist"
           du -sh "${{ github.workspace }}/dist"
+
       - name: Package
         if: inputs.stage == 'full'
         run: |
@@ -255,6 +312,7 @@ jobs:
           sha256sum crosvm > crosvm.sha256
           tar czf "$GITHUB_WORKSPACE/crosvm-mmio-${{ github.run_id }}.tar.gz" .
           ls -lh "$GITHUB_WORKSPACE/crosvm-mmio-${{ github.run_id }}.tar.gz"
+
       - name: Upload the build
         if: inputs.stage == 'full'
         uses: actions/upload-artifact@v4
@@ -263,6 +321,7 @@ jobs:
           path: ${{ github.workspace }}/crosvm-mmio-${{ github.run_id }}.tar.gz
           compression-level: 0
           retention-days: 14
+
       - name: Upload the build log when it failed
         if: failure() && inputs.stage == 'full'
         uses: actions/upload-artifact@v4
@@ -270,6 +329,7 @@ jobs:
           name: build-log-${{ github.run_id }}
           path: |
             ${{ github.workspace }}/build.log
+            ${{ github.workspace }}/resources.log
             /tmp/*.log
           if-no-files-found: warn
           retention-days: 7
