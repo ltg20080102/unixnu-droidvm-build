@@ -1,0 +1,20 @@
+diff --git a/Android.bp b/Android.bp
+index 9ec7b94d..5748f004 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -379,6 +379,7 @@ cc_library_static {
+         "//system/security/provisioner",
+         "//test/vts-testcase/security/avb",
+         "//vendor:__subpackages__",
++        "//external/crosvm/third_party/libdatachannel",
+     ],
+     min_sdk_version: "29",
+     apex_available: [
+@@ -388,6 +389,7 @@ cc_library_static {
+         "com.android.art.debug",
+         "com.android.extservices",
+         "com.android.neuralnetworks",
++        "com.android.virt",
+     ],
+     defaults: [
+         "libcrypto_bcm_sources",

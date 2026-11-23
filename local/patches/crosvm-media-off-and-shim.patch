@@ -1,0 +1,80 @@
+diff --git a/Android.bp b/Android.bp
+index c3f8c19..cded26e 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -80,7 +80,6 @@ rust_binary {
+         "gpu_display",
+         "gunyah",
+         "libaaudio_stub",
+-        "media",
+         "net",
+         "qcow",
+         "usb",
+@@ -227,7 +226,6 @@ rust_test {
+         "gpu_display",
+         "gunyah",
+         "libaaudio_stub",
+-        "media",
+         "net",
+         "qcow",
+         "usb",
+diff --git a/devices/Android.bp b/devices/Android.bp
+index 5073309..86452df 100644
+--- a/devices/Android.bp
++++ b/devices/Android.bp
+@@ -40,7 +40,6 @@ rust_test {
+         "gpu",
+         "gpu_display",
+         "gunyah",
+-        "media",
+         "net",
+         "usb",
+         "virgl_renderer",
+@@ -153,7 +152,6 @@ rust_test {
+         "gpu",
+         "gpu_display",
+         "gunyah",
+-        "media",
+         "net",
+         "usb",
+         "virgl_renderer",
+@@ -254,7 +252,6 @@ rust_library {
+         "gpu",
+         "gpu_display",
+         "gunyah",
+-        "media",
+         "net",
+         "usb",
+         "virgl_renderer",
+diff --git a/crosvm_device_only/Android.bp b/crosvm_device_only/Android.bp
+index 1d7752a..d13ef95 100644
+--- a/crosvm_device_only/Android.bp
++++ b/crosvm_device_only/Android.bp
+@@ -57,7 +57,6 @@ rust_binary {
+         "gpu_display",
+         "gunyah",
+         "libaaudio_stub",
+-        "media",
+         "net",
+         "qcow",
+         "usb",
+diff --git a/droidvm-shim/.cargo/config.toml b/droidvm-shim/.cargo/config.toml
+index c5e673d..69dbd6a 100644
+--- a/droidvm-shim/.cargo/config.toml
++++ b/droidvm-shim/.cargo/config.toml
+@@ -18,3 +18,15 @@ rustflags = [
+     "-C", "relocation-model=static",
+     "-C", "force-frame-pointers=yes",
+ ]
++
++# Local build (the prebuilt Android Rust has no aarch64-unknown-none-softfloat std and no rust-lld):
++# plain aarch64-unknown-none with NEON disabled, linked by the clang prebuilt's ld.lld.
++[target.aarch64-unknown-none]
++rustflags = [
++    "-C", "link-arg=-Tshim.ld",
++    "-C", "link-arg=-no-pie",
++    "-C", "relocation-model=static",
++    "-C", "force-frame-pointers=yes",
++    "-C", "target-feature=-neon",
++    "-C", "linker=/aosp/prebuilts/clang/host/linux-x86/clang-r563880c/bin/ld.lld",
++]
