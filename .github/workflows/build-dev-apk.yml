@@ -60,12 +60,17 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: SDK packages
+        env:
+          ANDROID_HOME: /usr/local/lib/android/sdk
+          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
         run: |
           set -uo pipefail
+          # The runner image already carries the SDK and cmdline-tools; do not use
+          # android-actions/setup-android, whose `sdkmanager tools` step fails on
+          # cmdline-tools 16 ("Failed to find package 'tools'").
+          export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/cmdline-tools/16.0/bin:$PATH"
+          sdkmanager --version
           yes | sdkmanager --licenses >/dev/null 2>&1 || true
           install() { echo "== sdkmanager $*"; yes | sdkmanager "$@" >/dev/null 2>&1 && echo ok || echo "MISSING: $*"; }
           install "platform-tools"
