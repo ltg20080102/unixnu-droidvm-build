@@ -106,3 +106,47 @@ ARM64_LINK_ADDR=0xfffffff007004000 BUILD_LTO=0` (`./unixnu build kernel`).
 * `peek.py`/`procs.py`/`panic.py` find crosvm by `VM_MATCH` in its command line: ours is
   `--name unixnu-ipados`, hence `VM_MATCH=unixnu`.
 * The rig reads guest memory through `/proc/<crosvm>/mem`; do not bulk-read the LENT pages.
+
+## 2026-11-24: the kernel boots iPadOS userland
+
+The payload kernel built on 2026-11-22 panics while exec'ing launchd (`vm_map_store_rb.c:628`,
+`_update_holes_on_entry_creation.cold.1` calls `panic()` directly; the log's `caller ... cold.2+0`
+is that call's return address). Three changes make the guest boot:
+
+1. **0001** in `scripts/apply-xnu-changes.py`: the hole-list panic becomes `return;` (the build
+   workflow applies it to the tree it compiles).
+2. **`DATA_VOLUME_UUID`**: the kernel must expect the payload's Data volume UUID,
+   `5824EFA5-F947-472C-8252-7BCBEF71C6A4` (binary match at `0x29070` of `Payloads/scratch-data.img`),
+   not the author's `C9B8D4FB-...`; the mismatch panics as
+   `offline scratch Data mount failed: 2` (ENOENT) in `load_init_program`.
+3. **0008**: `vm_shared_region_map_file()` returns KERN_SUCCESS when the region is already mapped
+   (dyld calls map_and_slide twice; the second call used to be refused with KERN_FAILURE → EINVAL).
+
+With a kernel built from `build-kernel.yml` (xcode-27 runner, `DATA_VOLUME_UUID` pinned) and
+`Payloads/kernel.macho` swapped in (ADT/trust cache/toml untouched), `procs.py` shows the real
+thing:
+
+```
+launchd p1  backboardd p56  SpringBoard p28  runningboardd p27  lsd p94  keybagd p46  cfprefsd p89
+health.py: userland 205 processes, input 81312 events, no panic
+```
+
+### What still does not work
+
+* **Display.** `health.py` reports `display 0 frames presented` with simplefb enabled (the screen
+  stays on the loader's last frame) and with `gpu-0` the kernel panics:
+  `Mutex interlock[0xfffffff00c130c80] timeout ... @lock_mtx.c:327 [_vm_page_locks+0x80]`,
+  panicked task `pid 1: launchd`. That page-lock deadlock is **not** in this repository's history
+  or the UniXNU docs - it is new, and it only appears with the virtio-gpu path.
+* **Memory.** 2048 MB without hugepages boots; 3072 MB without hugepages is refused by Gunyah
+  (`GH-SHIM: gave up: the resource manager refused MEM_ACCEPT (error 0x15)` after a 60 s share);
+  and **filling the hugepage pool hangs the host kernel every time** (`msm_watchdog ... QCOM Apps
+  Watchdog bite`), even with 7 GB free - so `--hugepages` is unusable on this phone.
+* **Input** works with `--virtio-mmio-input` (the daemon's `--input` sockets move to mmio). Without
+  it the loader menu's countdown also got stuck, so the flag is worth keeping.
+* **Resolution** 1366x1024 (the iPad Pro 12.9" points; simplefb is 6 MiB at that size).
+
+### GPU bisect still open
+
+The deadlock may be in the udmabuf/native-context path: try `--gpu ...,udmabuf=false` and drop
+`--pre-alloc drm-host-mb=8` before concluding it is the display driver itself.
