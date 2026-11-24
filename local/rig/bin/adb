@@ -1,0 +1,3 @@
+#!/bin/bash
+# WSL shim: the real adb is the Windows adb.exe on port 5038.
+exec "/mnt/d/bootloaderbreak/极光の粗粮8EliteGen5设备一键解锁bl/adb.exe" -P 5038 "$@"
