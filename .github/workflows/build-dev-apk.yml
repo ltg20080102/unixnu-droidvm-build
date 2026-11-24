@@ -119,6 +119,21 @@ jobs:
           compression-level: 0
           retention-days: 14
 
+      - name: Publish the APK to the rolling release
+        if: steps.find.outputs.found == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag=dev-apk-latest
+          if ! gh release view "$tag" --repo "${{ github.repository }}" >/dev/null 2>&1; then
+            gh release create "$tag" --repo "${{ github.repository }}" \
+              --title "DroidVM dev APK (C++ daemon)" \
+              --notes "Rolling build of Droid-VM/DroidVM@${{ env.APP_REF }}. Debug-signed; uninstall the released app first (different signature)."
+          fi
+          gh release upload "$tag" out/*.apk --clobber --repo "${{ github.repository }}"
+          echo "https://github.com/${{ github.repository }}/releases/download/$tag/$(basename "$(ls out/*.apk | head -1)")"
+
       - name: Upload the build log when it failed
         if: failure()
         uses: actions/upload-artifact@v4
