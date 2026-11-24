@@ -73,11 +73,29 @@ Reproduced with 2048/3072/4096 MB, hugepages on/off, GPU (mmio/PCI) and simplefb
 devices, `owner-service-manager=1` or not, and `amfi_get_out_of_my_way=1 cs_enforcement_disable=1`.
 Adding `vm_map_debug_fourk=1 vm_map_debug_apple_protect=1` added no output.
 
-Patching `_update_holes_on_entry_creation.cold.2` (VA `0xfffffff00c01ca84`) to `ret` does
-**not** stop the panic (the running kernel does carry the bytes, verified with `peek.py`), so
-the assert comes from another call site; the next thing to try is `_Assert` itself
-(`VA 0xfffffff00bff9440`) or the kernel sources (the author's build host: macOS 27 / Xcode
-27.1, `./unixnu build kernel`, `KERNEL_CONFIGS=DEVELOPMENT`, `BUILD_LTO=0`).
+The panic is raised **directly** from `_update_holes_on_entry_creation.cold.1`
+(`VA 0xfffffff00c01ca34`): at `0xfffffff00c01ca80` it does `bl _panic`, and the return address
+`0xfffffff00c01ca84` is what the log symbolizes as `cold.2+0x0` - that is why patching
+`cold.2` and `_Assert` changed nothing (`peek.py` confirmed both patches were live in the
+running kernel).
+
+```sh
+python3 patch-kernel.py out/kernel.macho patch/kernel-cold1.macho --va 0xfffffff00c01ca34 --ret
+mcopy -o -i droidvm-disk.img patch/kernel-cold1.macho ::/EFI/UniXNU/Payloads/kernel.macho
+adb push droidvm-disk.img /data/local/tmp/ && adb shell su -c \
+  'cp /data/local/tmp/droidvm-disk.img /data/media/0/DroidVM/UniXNU/'
+```
+
+That **removes the panic** (`panic.py` -> "no panic", `droidvm_monitor_passes` 1 -> 100,
+kernel_task 47 -> 62 threads), but `launchd` still never becomes a process: the `vm_map_enter`
+that the assertion was guarding fails, so the exec fails silently and the kernel parks.
+
+So the remaining defect is in the guest kernel's 4 KiB VM-map hole bookkeeping
+(`vm_map_store_rb.c` / `update_holes_on_entry_creation`), not in the host configuration. Two
+ways forward: a kernel built with more diagnostics (KASAN, DEBUG) or a different payload build
+from the author, or fixing the hole logic in source. The author builds with macOS 27 / Xcode
+27.1: `SDKROOT=iphoneos ARCH_CONFIGS=ARM64 MACHINE_CONFIGS=BCM2837 KERNEL_CONFIGS=DEVELOPMENT
+ARM64_LINK_ADDR=0xfffffff007004000 BUILD_LTO=0` (`./unixnu build kernel`).
 
 ## Pitfalls
 
