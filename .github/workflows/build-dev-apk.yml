@@ -31,6 +31,9 @@ env:
   APP_REF: ${{ inputs.ref || 'dev' }}
   TASK: ${{ inputs.gradle_task || ':app:assembleDebug' }}
 
+permissions:
+  contents: write   # gh release create/upload for the rolling dev-apk-latest release
+
 defaults:
   run:
     shell: bash
