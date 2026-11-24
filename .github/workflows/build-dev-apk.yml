@@ -1,0 +1,126 @@
+# Build the DroidVM *dev* APK - the one whose daemon is the C++ droidvmd (DroidVM-Daemon).
+#
+# Why: the released app (0.0.6) ships the Java daemon, which ignores a VM's "extra_options"
+# (verified: importing the author's vms.json starts crosvm with PCI-only arguments). The C++
+# daemon supports them (DroidVM-Daemon/vm/crosvm_command.cpp appends extra_options verbatim)
+# and provides the host-side services (native display, app_console, ...). The dev branch is
+# where that daemon is integrated: app/src/main/cpp/CMakeLists.txt does
+#   add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/../../../../daemon" ...)
+# with the daemon checked out as the `daemon` git submodule.
+#
+# Inputs: none. Run it from Actions, or push a change under trigger-dev-apk/.
+# Output: app/build/outputs/apk/debug/app-debug.apk (debug-signed, installable over the
+# released app only after uninstalling it - different signature).
+
+name: build dev APK (C++ daemon)
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'branch of Droid-VM/DroidVM'
+        default: dev
+      gradle_task:
+        description: 'assembleDebug or assembleRelease'
+        default: assembleDebug
+  push:
+    paths:
+      - 'trigger-dev-apk/**'
+
+env:
+  APP_REF: ${{ inputs.ref || 'dev' }}
+  TASK: ${{ inputs.gradle_task || 'assembleDebug' }}
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  apk:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Checkout the app with its submodules
+        run: |
+          set -euo pipefail
+          git clone --depth 1 -b "$APP_REF" https://github.com/Droid-VM/DroidVM DroidVM
+          cd DroidVM
+          git submodule update --init --depth 1 --recursive 2>&1 | tail -5
+          echo "== submodules"
+          git submodule status | cut -c1-100
+          echo "== jsoncpp pin"; git ls-tree HEAD app/src/main/cpp/jsoncpp
+          echo "== daemon pin";  git ls-tree HEAD daemon
+          ls -d daemon app/src/main/assets/prebuilts 2>/dev/null || true
+
+      - name: JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: SDK packages
+        run: |
+          set -uo pipefail
+          yes | sdkmanager --licenses >/dev/null 2>&1 || true
+          install() { echo "== sdkmanager $*"; yes | sdkmanager "$@" >/dev/null 2>&1 && echo ok || echo "MISSING: $*"; }
+          install "platform-tools"
+          install "platforms;android-37" || true
+          install "platforms;android-36"
+          install "build-tools;37.0.0" || true
+          install "build-tools;36.0.0"
+          install "cmake;3.22.1"
+          install "ndk;27.0.12077973"
+          install "ndk;28.2.13676358" || true
+          ls "$ANDROID_HOME/ndk" 2>/dev/null || true
+          ls "$ANDROID_HOME/platforms" 2>/dev/null || true
+
+      - name: Build
+        working-directory: DroidVM
+        env:
+          ANDROID_HOME: ${{ env.ANDROID_HOME }}
+        run: |
+          set -uo pipefail
+          chmod +x gradlew
+          ./gradlew "$TASK" --no-daemon --stacktrace 2>&1 | tee build.log | tail -120
+          echo "== rc=${PIPESTATUS[0]}"
+          test -f build.log
+
+      - name: Locate the APK
+        id: find
+        run: |
+          set -euo pipefail
+          apk=$(find DroidVM/app/build/outputs/apk -name '*.apk' | head -1 || true)
+          echo "apk=$apk"
+          if [ -n "$apk" ]; then
+            mkdir -p out
+            cp "$apk" out/
+            sha256sum "out/$(basename "$apk")" | tee out/SHA256SUMS
+            ls -l out
+            echo "found=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=0" >> "$GITHUB_OUTPUT"
+            echo "::error::no APK was produced"
+          fi
+
+      - name: Upload the APK
+        if: steps.find.outputs.found == '1'
+        uses: actions/upload-artifact@v4
+        with:
+          name: DroidVM-dev-${{ env.APP_REF }}
+          path: out/
+          compression-level: 0
+          retention-days: 14
+
+      - name: Upload the build log when it failed
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: DroidVM-dev-build-log
+          path: DroidVM/build.log
+          compression-level: 0
+          retention-days: 14
