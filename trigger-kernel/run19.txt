@@ -1,0 +1,7 @@
+run19: macos-26 -> xcode-27.
+
+The previous run (45397473679) never got a runner: the job sat queued for 15 minutes
+and was then cancelled, with an empty log.  build-droidvm.yml runs on "xcode-27" and its
+successful runs (45020390060) show a GitHub-hosted larger runner with Xcode 27, which is
+what the kernel build needs too (SDKROOT=iphoneos).  Same build as run18: kernel only,
+the boot disk's kernel.macho.adt / kernel.macho.trustcache / unixnu.toml stay as they are.
