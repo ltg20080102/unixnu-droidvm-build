@@ -1,0 +1,12 @@
+run18: build with the current tree (0001-0008) and deploy the kernel alone.
+
+The phone's payload kernel (built 2026-11-22) still carries the original
+vm_map_store_rb.c hole-list panic: reproduced today as
+"panic: Illegal action ... @vm_map_store_rb.c:628" with the stack
+exec_activate_image <- posix_spawn <- load_init_program, and procs.py showing
+only kernel_task.
+
+This run only needs kernel.macho.  DarwinBoot's device tree is made from the VM's
+FDT at boot and the trust cache covers the user space, so the boot disk's
+kernel.macho.adt / kernel.macho.trustcache / unixnu.toml stay exactly as they are;
+deploy replaces Payloads/kernel.macho and nothing else.
