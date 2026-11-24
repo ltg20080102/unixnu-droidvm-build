@@ -22,14 +22,14 @@ on:
         default: dev
       gradle_task:
         description: 'assembleDebug or assembleRelease'
-        default: assembleDebug
+        default: ':app:assembleDebug'
   push:
     paths:
       - 'trigger-dev-apk/**'
 
 env:
   APP_REF: ${{ inputs.ref || 'dev' }}
-  TASK: ${{ inputs.gradle_task || 'assembleDebug' }}
+  TASK: ${{ inputs.gradle_task || ':app:assembleDebug' }}
 
 defaults:
   run:
