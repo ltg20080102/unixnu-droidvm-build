@@ -60,6 +60,11 @@ jobs:
           distribution: temurin
           java-version: '21'
 
+      - name: Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
       - name: SDK packages
         env:
           ANDROID_HOME: /usr/local/lib/android/sdk
@@ -89,8 +94,13 @@ jobs:
         run: |
           set -uo pipefail
           chmod +x gradlew
-          ./gradlew "$TASK" --no-daemon --stacktrace 2>&1 | tee build.log | tail -120
-          echo "== rc=${PIPESTATUS[0]}"
+          ./gradlew "$TASK" --no-daemon --stacktrace 2>&1 | tee build.log | tail -400
+          rc=${PIPESTATUS[0]}
+          echo "== rc=$rc"
+          if [ "$rc" != 0 ]; then
+            echo "== npm/webui context"
+            grep -n -B3 -A25 -E "npm|EBADENGINE|webui" build.log | head -120 || true
+          fi
           test -f build.log
 
       - name: Locate the APK
