@@ -81,8 +81,6 @@ jobs:
 
       - name: Build
         working-directory: DroidVM
-        env:
-          ANDROID_HOME: ${{ env.ANDROID_HOME }}
         run: |
           set -uo pipefail
           chmod +x gradlew
