@@ -1,0 +1,749 @@
+apk	Set up job	﻿2026-11-24T05:35:13.5710510Z Current runner version: '2.338.2'
+apk	Set up job	2026-11-24T05:35:13.5727416Z ##[group]Runner Image Provisioner
+apk	Set up job	2026-11-24T05:35:13.5728130Z Hosted Compute Agent
+apk	Set up job	2026-11-24T05:35:13.5728545Z Version: 20261111.635
+apk	Set up job	2026-11-24T05:35:13.5729567Z Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed
+apk	Set up job	2026-11-24T05:35:13.5730154Z Build Date: 2026-11-11T01:49:01Z
+apk	Set up job	2026-11-24T05:35:13.5730641Z Worker ID: {b511ff36-6bcc-4dcf-a87d-cd179f592a9b}
+apk	Set up job	2026-11-24T05:35:13.5731153Z Region: us-west-2
+apk	Set up job	2026-11-24T05:35:13.5731607Z Cloud: AWS
+apk	Set up job	2026-11-24T05:35:13.5731960Z ##[endgroup]
+apk	Set up job	2026-11-24T05:35:13.5733061Z ##[group]Operating System
+apk	Set up job	2026-11-24T05:35:13.5733498Z Ubuntu
+apk	Set up job	2026-11-24T05:35:13.5733863Z 24.04.5
+apk	Set up job	2026-11-24T05:35:13.5734244Z LTS
+apk	Set up job	2026-11-24T05:35:13.5734607Z ##[endgroup]
+apk	Set up job	2026-11-24T05:35:13.5735025Z ##[group]Runner Image
+apk	Set up job	2026-11-24T05:35:13.5735431Z Image: ubuntu-24.04
+apk	Set up job	2026-11-24T05:35:13.5735830Z Version: 20261116.133.1
+apk	Set up job	2026-11-24T05:35:13.5736607Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261116.133/images/ubuntu/Ubuntu2404-Readme.md
+apk	Set up job	2026-11-24T05:35:13.5737857Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261116.133
+apk	Set up job	2026-11-24T05:35:13.5738544Z ##[endgroup]
+apk	Set up job	2026-11-24T05:35:13.5739606Z ##[group]GITHUB_TOKEN Permissions
+apk	Set up job	2026-11-24T05:35:13.5741310Z Contents: read
+apk	Set up job	2026-11-24T05:35:13.5741728Z Metadata: read
+apk	Set up job	2026-11-24T05:35:13.5742174Z Packages: read
+apk	Set up job	2026-11-24T05:35:13.5742563Z ##[endgroup]
+apk	Set up job	2026-11-24T05:35:13.5744062Z Secret source: Actions
+apk	Set up job	2026-11-24T05:35:13.5744710Z Cache mode: write
+apk	Set up job	2026-11-24T05:35:13.5745207Z Prepare workflow directory
+apk	Set up job	2026-11-24T05:35:13.6105179Z Prepare all required actions
+apk	Set up job	2026-11-24T05:35:13.6140972Z Getting action download info
+apk	Set up job	2026-11-24T05:35:13.9742188Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+apk	Set up job	2026-11-24T05:35:15.4900905Z Download action repository 'actions/setup-java@v4' (SHA:cf277c60eb25467037889841efdb72551f06f6c3)
+apk	Set up job	2026-11-24T05:35:15.9012529Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+apk	Set up job	2026-11-24T05:35:16.0398310Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+apk	Set up job	2026-11-24T05:35:16.3523190Z Complete job name: apk
+apk	Run actions/checkout@v4	﻿2026-11-24T05:35:16.4222493Z ##[group]Run actions/checkout@v4
+apk	Run actions/checkout@v4	2026-11-24T05:35:16.4223555Z with:
+apk	Run actions/checkout@v4	2026-11-24T05:35:16.4224289Z   repository: ltg20080102/unixnu-droidvm-build
+apk	Run actions/checkout@v4	2026-11-24T05:35:16.4230974Z   token: ***
+apk	Run actions/checkout@v4	2026-11-24T05:35:16.4231705Z   ssh-strict: true
+apk	Run actions/checkout@v4	2026-11-24T05:35:16.4232452Z   ssh-user: git
+apk	Run actions/checkout@v4	2026-11-24T05:35:16.4233175Z   persist-credentials: true
+apk	Run actions/checkout@v4	2026-11-24T05:35:16.4233952Z   clean: true
+apk	Run actions/checkout@v4	2026-11-24T05:35:16.4234697Z   sparse-checkout-cone-mode: true
+apk	Run actions/checkout@v4	2026-11-24T05:35:16.4235544Z   fetch-depth: 1
+apk	Run actions/checkout@v4	2026-11-24T05:35:16.4236244Z   fetch-tags: false
+apk	Run actions/checkout@v4	2026-11-24T05:35:16.4236984Z   show-progress: true
+apk	Run actions/checkout@v4	2026-11-24T05:35:16.4237687Z   lfs: false
+apk	Run actions/checkout@v4	2026-11-24T05:35:16.4238360Z   submodules: false
+apk	Run actions/checkout@v4	2026-11-24T05:35:16.4239229Z   set-safe-directory: true
+apk	Run actions/checkout@v4	2026-11-24T05:35:16.4240157Z   allow-unsafe-pr-checkout: false
+apk	Run actions/checkout@v4	2026-11-24T05:35:16.4241142Z env:
+apk	Run actions/checkout@v4	2026-11-24T05:35:16.4241773Z   APP_REF: dev
+apk	Run actions/checkout@v4	2026-11-24T05:35:16.4242487Z   TASK: :app:assembleDebug
+apk	Run actions/checkout@v4	2026-11-24T05:35:16.4243259Z ##[endgroup]
+apk	Run actions/checkout@v4	2026-11-24T05:35:18.9303702Z Syncing repository: ltg20080102/unixnu-droidvm-build
+apk	Run actions/checkout@v4	2026-11-24T05:35:18.9305141Z ##[group]Getting Git version info
+apk	Run actions/checkout@v4	2026-11-24T05:35:18.9305585Z Working directory is '/home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build'
+apk	Run actions/checkout@v4	2026-11-24T05:35:18.9306167Z [command]/usr/bin/git version
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.3250708Z git version 2.56.1
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.3270843Z ##[endgroup]
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.3275817Z Temporarily overriding HOME='/home/runner/work/_temp/aad2997e-4ee6-4408-a67f-9617005bbc52' before making global git config changes
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.3276514Z Adding repository directory to the temporary git global config as a safe directory
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.3280348Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.3696310Z Deleting the contents of '/home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build'
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.3699656Z ##[group]Initializing the repository
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.3703720Z [command]/usr/bin/git init /home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4179694Z hint: Using 'master' as the name for the initial branch. This default branch name
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4180270Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4180678Z hint: to use in all of your new repositories, which will suppress this warning,
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4181029Z hint: call:
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4181225Z hint:
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4181492Z hint: 	git config --global init.defaultBranch <name>
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4181759Z hint:
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4182004Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4182378Z hint: 'development'. The just-created branch can be renamed via this command:
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4182699Z hint:
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4182890Z hint: 	git branch -m <name>
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4183098Z hint:
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4183364Z hint: Disable this message with "git config set advice.defaultBranchName false"
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4190591Z Initialized empty Git repository in /home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/.git/
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4197612Z [command]/usr/bin/git remote add origin https://github.com/ltg20080102/unixnu-droidvm-build
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4246585Z ##[endgroup]
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4247073Z ##[group]Disabling automatic garbage collection
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4249675Z [command]/usr/bin/git config --local gc.auto 0
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4271202Z ##[endgroup]
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4271704Z ##[group]Setting up auth
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4276047Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.4304993Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.7770658Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.7804256Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.7953123Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.7976782Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.8126913Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.8151868Z ##[endgroup]
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.8152651Z ##[group]Fetching the repository
+apk	Run actions/checkout@v4	2026-11-24T05:35:19.8164876Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +7a4477eff668962309c29277ead6b42173b00f5c:refs/remotes/origin/main
+apk	Run actions/checkout@v4	2026-11-24T05:35:20.5119515Z From https://github.com/ltg20080102/unixnu-droidvm-build
+apk	Run actions/checkout@v4	2026-11-24T05:35:20.5120222Z  * [new ref]         7a4477eff668962309c29277ead6b42173b00f5c -> origin/main
+apk	Run actions/checkout@v4	2026-11-24T05:35:20.5123728Z ##[endgroup]
+apk	Run actions/checkout@v4	2026-11-24T05:35:20.5124116Z ##[group]Determining the checkout info
+apk	Run actions/checkout@v4	2026-11-24T05:35:20.5126194Z ##[endgroup]
+apk	Run actions/checkout@v4	2026-11-24T05:35:20.5131146Z [command]/usr/bin/git sparse-checkout disable
+apk	Run actions/checkout@v4	2026-11-24T05:35:20.5192523Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+apk	Run actions/checkout@v4	2026-11-24T05:35:20.5212880Z ##[group]Checking out the ref
+apk	Run actions/checkout@v4	2026-11-24T05:35:20.5223366Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+apk	Run actions/checkout@v4	2026-11-24T05:35:20.5638719Z Switched to a new branch 'main'
+apk	Run actions/checkout@v4	2026-11-24T05:35:20.5648504Z branch 'main' set up to track 'origin/main'.
+apk	Run actions/checkout@v4	2026-11-24T05:35:20.5651657Z ##[endgroup]
+apk	Run actions/checkout@v4	2026-11-24T05:35:20.5686411Z [command]/usr/bin/git log -1 --format=%H
+apk	Run actions/checkout@v4	2026-11-24T05:35:20.5705189Z 7a4477eff668962309c29277ead6b42173b00f5c
+apk	Checkout the app with its submodules	﻿2026-11-24T05:35:20.5866621Z ##[group]Run set -euo pipefail
+apk	Checkout the app with its submodules	2026-11-24T05:35:20.5867017Z ^[[36;1mset -euo pipefail^[[0m
+apk	Checkout the app with its submodules	2026-11-24T05:35:20.5867330Z ^[[36;1mgit clone --depth 1 -b "$APP_REF" https://github.com/Droid-VM/DroidVM DroidVM^[[0m
+apk	Checkout the app with its submodules	2026-11-24T05:35:20.5867621Z ^[[36;1mcd DroidVM^[[0m
+apk	Checkout the app with its submodules	2026-11-24T05:35:20.5867860Z ^[[36;1mgit submodule update --init --depth 1 --recursive 2>&1 | tail -5^[[0m
+apk	Checkout the app with its submodules	2026-11-24T05:35:20.5868124Z ^[[36;1mecho "== submodules"^[[0m
+apk	Checkout the app with its submodules	2026-11-24T05:35:20.5868331Z ^[[36;1mgit submodule status | cut -c1-100^[[0m
+apk	Checkout the app with its submodules	2026-11-24T05:35:20.5868621Z ^[[36;1mecho "== jsoncpp pin"; git ls-tree HEAD app/src/main/cpp/jsoncpp^[[0m
+apk	Checkout the app with its submodules	2026-11-24T05:35:20.5869223Z ^[[36;1mecho "== daemon pin";  git ls-tree HEAD daemon^[[0m
+apk	Checkout the app with its submodules	2026-11-24T05:35:20.5869514Z ^[[36;1mls -d daemon app/src/main/assets/prebuilts 2>/dev/null || true^[[0m
+apk	Checkout the app with its submodules	2026-11-24T05:35:20.9243930Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+apk	Checkout the app with its submodules	2026-11-24T05:35:20.9244431Z env:
+apk	Checkout the app with its submodules	2026-11-24T05:35:20.9244621Z   APP_REF: dev
+apk	Checkout the app with its submodules	2026-11-24T05:35:20.9244824Z   TASK: :app:assembleDebug
+apk	Checkout the app with its submodules	2026-11-24T05:35:20.9245082Z ##[endgroup]
+apk	Checkout the app with its submodules	2026-11-24T05:35:20.9314365Z Cloning into 'DroidVM'...
+apk	Checkout the app with its submodules	2026-11-24T05:35:41.2203163Z  * branch            ed9837be86c189186c4d2c08c11fed59c53082ed -> FETCH_HEAD
+apk	Checkout the app with its submodules	2026-11-24T05:35:41.2203611Z Submodule path 'daemon': checked out 'ed9837be86c189186c4d2c08c11fed59c53082ed'
+apk	Checkout the app with its submodules	2026-11-24T05:35:41.2204017Z From https://github.com/Droid-VM/DroidVM-WebUI
+apk	Checkout the app with its submodules	2026-11-24T05:35:41.2204512Z  * branch            fadada8ac2f54a8f7ebab95a52cd5b1a04b571f4 -> FETCH_HEAD
+apk	Checkout the app with its submodules	2026-11-24T05:35:41.2205009Z Submodule path 'webui': checked out 'fadada8ac2f54a8f7ebab95a52cd5b1a04b571f4'
+apk	Checkout the app with its submodules	2026-11-24T05:35:41.2205569Z == submodules
+apk	Checkout the app with its submodules	2026-11-24T05:35:41.2621808Z  fba4acdc0db8fa6a5c649b8e82eb9c31bf5c06fc app/src/main/assets/prebuilts (fba4acd)
+apk	Checkout the app with its submodules	2026-11-24T05:35:41.2622546Z  3455302847cf1e4671f1d8f5fa953fd46a7b1404 app/src/main/cpp/jsoncpp (3455302)
+apk	Checkout the app with its submodules	2026-11-24T05:35:41.2623226Z  1ee1a4afcb5322db0e64f6ec6b00dac5a06af94b app/src/main/cpp/libvncserver (1ee1a4a)
+apk	Checkout the app with its submodules	2026-11-24T05:35:41.2623885Z  6cec94b5634e1c9025af17527688f502f523fd25 app/src/main/cpp/udisasm (heads/master)
+apk	Checkout the app with its submodules	2026-11-24T05:35:41.2624438Z  ed9837be86c189186c4d2c08c11fed59c53082ed daemon (ed9837b)
+apk	Checkout the app with its submodules	2026-11-24T05:35:41.2624877Z  fadada8ac2f54a8f7ebab95a52cd5b1a04b571f4 webui (fadada8)
+apk	Checkout the app with its submodules	2026-11-24T05:35:41.2627151Z == jsoncpp pin
+apk	Checkout the app with its submodules	2026-11-24T05:35:41.2638031Z 160000 commit 3455302847cf1e4671f1d8f5fa953fd46a7b1404	app/src/main/cpp/jsoncpp
+apk	Checkout the app with its submodules	2026-11-24T05:35:41.2640389Z == daemon pin
+apk	Checkout the app with its submodules	2026-11-24T05:35:41.2651970Z 160000 commit ed9837be86c189186c4d2c08c11fed59c53082ed	daemon
+apk	Checkout the app with its submodules	2026-11-24T05:35:41.2660907Z app/src/main/assets/prebuilts
+apk	Checkout the app with its submodules	2026-11-24T05:35:41.2661222Z daemon
+apk	JDK 21	﻿2026-11-24T05:35:41.2753299Z ##[group]Run actions/setup-java@v4
+apk	JDK 21	2026-11-24T05:35:41.2753508Z with:
+apk	JDK 21	2026-11-24T05:35:41.2753664Z   distribution: temurin
+apk	JDK 21	2026-11-24T05:35:41.2753832Z   java-version: 21
+apk	JDK 21	2026-11-24T05:35:41.2753996Z   java-package: jdk
+apk	JDK 21	2026-11-24T05:35:41.2754169Z   check-latest: false
+apk	JDK 21	2026-11-24T05:35:41.2754323Z   server-id: github
+apk	JDK 21	2026-11-24T05:35:41.2754484Z   server-username: GITHUB_ACTOR
+apk	JDK 21	2026-11-24T05:35:41.2754672Z   server-password: GITHUB_TOKEN
+apk	JDK 21	2026-11-24T05:35:41.2754856Z   overwrite-settings: true
+apk	JDK 21	2026-11-24T05:35:41.2755026Z   job-status: success
+apk	JDK 21	2026-11-24T05:35:41.2756625Z   token: ***
+apk	JDK 21	2026-11-24T05:35:41.2756770Z env:
+apk	JDK 21	2026-11-24T05:35:41.2756911Z   APP_REF: dev
+apk	JDK 21	2026-11-24T05:35:41.2757067Z   TASK: :app:assembleDebug
+apk	JDK 21	2026-11-24T05:35:41.2757323Z ##[endgroup]
+apk	JDK 21	2026-11-24T05:35:41.4641642Z ##[warning]setup-java v4 is deprecated and will no longer receive updates. Please migrate to actions/setup-java@v5.
+apk	JDK 21	2026-11-24T05:35:41.4651397Z ##[group]Installed distributions
+apk	JDK 21	2026-11-24T05:35:41.5054083Z Resolved Java 21.0.13+9 from tool-cache
+apk	JDK 21	2026-11-24T05:35:41.5054535Z Setting Java 21.0.13+9 as the default
+apk	JDK 21	2026-11-24T05:35:41.5060449Z (node:2522) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+apk	JDK 21	2026-11-24T05:35:41.5061305Z (Use `node --trace-deprecation ...` to show where the warning was created)
+apk	JDK 21	2026-11-24T05:35:41.5063081Z Creating toolchains.xml for JDK version 21 from temurin
+apk	JDK 21	2026-11-24T05:35:41.5113401Z Writing to /home/runner/.m2/toolchains.xml
+apk	JDK 21	2026-11-24T05:35:41.5113676Z 
+apk	JDK 21	2026-11-24T05:35:41.5113768Z Java configuration:
+apk	JDK 21	2026-11-24T05:35:41.5114002Z   Distribution: temurin
+apk	JDK 21	2026-11-24T05:35:41.5114285Z   Version: 21.0.13+9
+apk	JDK 21	2026-11-24T05:35:41.5114633Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	JDK 21	2026-11-24T05:35:41.5114926Z 
+apk	JDK 21	2026-11-24T05:35:41.5115259Z ##[endgroup]
+apk	JDK 21	2026-11-24T05:35:41.5130755Z Creating settings.xml with server-id: github
+apk	JDK 21	2026-11-24T05:35:41.5145522Z Writing to /home/runner/.m2/settings.xml
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	﻿2026-11-24T05:35:41.5315970Z ##[group]Run actions/setup-node@v4
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	2026-11-24T05:35:41.5316279Z with:
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	2026-11-24T05:35:41.5316496Z   node-version: 24
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	2026-11-24T05:35:41.5316727Z   always-auth: false
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	2026-11-24T05:35:41.5316964Z   check-latest: false
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	2026-11-24T05:35:41.5320116Z   token: ***
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	2026-11-24T05:35:41.5320367Z env:
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	2026-11-24T05:35:41.5320565Z   APP_REF: dev
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	2026-11-24T05:35:41.5320782Z   TASK: :app:assembleDebug
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	2026-11-24T05:35:41.5321157Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	2026-11-24T05:35:41.5321701Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	2026-11-24T05:35:41.5322123Z ##[endgroup]
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	2026-11-24T05:35:41.7934874Z (node:2534) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	2026-11-24T05:35:41.7935712Z (Use `node --trace-deprecation ...` to show where the warning was created)
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	2026-11-24T05:35:41.7943275Z Found in cache @ /opt/hostedtoolcache/node/24.22.3/x64
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	2026-11-24T05:35:41.7943686Z ##[group]Environment details
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	2026-11-24T05:35:45.2452444Z node: v24.22.3
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	2026-11-24T05:35:45.2452755Z npm: 11.19.1
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	2026-11-24T05:35:45.2452936Z yarn: 1.22.22
+apk	Node 24 (the WebUI submodule requires ^24.0.0 and the WebUI task runs npm ci --engine-strict)	2026-11-24T05:35:45.2453585Z ##[endgroup]
+apk	SDK packages	﻿2026-11-24T05:35:45.2543883Z ##[group]Run set -uo pipefail
+apk	SDK packages	2026-11-24T05:35:45.2544138Z ^[[36;1mset -uo pipefail^[[0m
+apk	SDK packages	2026-11-24T05:35:45.2544409Z ^[[36;1m# The runner image already carries the SDK and cmdline-tools; do not use^[[0m
+apk	SDK packages	2026-11-24T05:35:45.2544799Z ^[[36;1m# android-actions/setup-android, whose `sdkmanager tools` step fails on^[[0m
+apk	SDK packages	2026-11-24T05:35:45.2545134Z ^[[36;1m# cmdline-tools 16 ("Failed to find package 'tools'").^[[0m
+apk	SDK packages	2026-11-24T05:35:45.2545515Z ^[[36;1mexport PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/cmdline-tools/16.0/bin:$PATH"^[[0m
+apk	SDK packages	2026-11-24T05:35:45.2545857Z ^[[36;1msdkmanager --version^[[0m
+apk	SDK packages	2026-11-24T05:35:45.2546080Z ^[[36;1myes | sdkmanager --licenses >/dev/null 2>&1 || true^[[0m
+apk	SDK packages	2026-11-24T05:35:45.2546456Z ^[[36;1minstall() { echo "== sdkmanager $*"; yes | sdkmanager "$@" >/dev/null 2>&1 && echo ok || echo "MISSING: $*"; }^[[0m
+apk	SDK packages	2026-11-24T05:35:45.2546798Z ^[[36;1minstall "platform-tools"^[[0m
+apk	SDK packages	2026-11-24T05:35:45.2547015Z ^[[36;1minstall "platforms;android-37" || true^[[0m
+apk	SDK packages	2026-11-24T05:35:45.2547255Z ^[[36;1minstall "platforms;android-36"^[[0m
+apk	SDK packages	2026-11-24T05:35:45.2547507Z ^[[36;1minstall "build-tools;37.0.0" || true^[[0m
+apk	SDK packages	2026-11-24T05:35:45.2547718Z ^[[36;1minstall "build-tools;36.0.0"^[[0m
+apk	SDK packages	2026-11-24T05:35:45.2547908Z ^[[36;1minstall "cmake;3.22.1"^[[0m
+apk	SDK packages	2026-11-24T05:35:45.2548096Z ^[[36;1minstall "ndk;27.0.12077973"^[[0m
+apk	SDK packages	2026-11-24T05:35:45.2548288Z ^[[36;1minstall "ndk;28.2.13676358" || true^[[0m
+apk	SDK packages	2026-11-24T05:35:45.2548509Z ^[[36;1mls "$ANDROID_HOME/ndk" 2>/dev/null || true^[[0m
+apk	SDK packages	2026-11-24T05:35:45.2548757Z ^[[36;1mls "$ANDROID_HOME/platforms" 2>/dev/null || true^[[0m
+apk	SDK packages	2026-11-24T05:35:45.2587143Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+apk	SDK packages	2026-11-24T05:35:45.2587421Z env:
+apk	SDK packages	2026-11-24T05:35:45.2587580Z   APP_REF: dev
+apk	SDK packages	2026-11-24T05:35:45.2587744Z   TASK: :app:assembleDebug
+apk	SDK packages	2026-11-24T05:35:45.2587997Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	SDK packages	2026-11-24T05:35:45.2588352Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	SDK packages	2026-11-24T05:35:45.2588780Z   ANDROID_HOME: /usr/local/lib/android/sdk
+apk	SDK packages	2026-11-24T05:35:45.2589154Z   ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+apk	SDK packages	2026-11-24T05:35:45.2589365Z ##[endgroup]
+apk	SDK packages	2026-11-24T05:35:53.2767313Z 12.0
+apk	SDK packages	2026-11-24T05:35:53.2767766Z 
+apk	SDK packages	2026-11-24T05:35:55.7050405Z yes: standard output: Broken pipe
+apk	SDK packages	2026-11-24T05:35:55.7061662Z == sdkmanager platform-tools
+apk	SDK packages	2026-11-24T05:35:57.4970745Z yes: standard output: Broken pipe
+apk	SDK packages	2026-11-24T05:35:57.4972343Z MISSING: platform-tools
+apk	SDK packages	2026-11-24T05:35:57.4972721Z == sdkmanager platforms;android-37
+apk	SDK packages	2026-11-24T05:35:58.4301387Z yes: standard output: Broken pipe
+apk	SDK packages	2026-11-24T05:35:58.4303438Z MISSING: platforms;android-37
+apk	SDK packages	2026-11-24T05:35:58.4303720Z == sdkmanager platforms;android-36
+apk	SDK packages	2026-11-24T05:35:59.3701206Z yes: standard output: Broken pipe
+apk	SDK packages	2026-11-24T05:35:59.3703228Z MISSING: platforms;android-36
+apk	SDK packages	2026-11-24T05:35:59.3705797Z == sdkmanager build-tools;37.0.0
+apk	SDK packages	2026-11-24T05:36:00.3311485Z yes: standard output: Broken pipe
+apk	SDK packages	2026-11-24T05:36:00.3313108Z MISSING: build-tools;37.0.0
+apk	SDK packages	2026-11-24T05:36:00.3313492Z == sdkmanager build-tools;36.0.0
+apk	SDK packages	2026-11-24T05:36:01.3905809Z yes: standard output: Broken pipe
+apk	SDK packages	2026-11-24T05:36:01.3908029Z MISSING: build-tools;36.0.0
+apk	SDK packages	2026-11-24T05:36:01.3908435Z == sdkmanager cmake;3.22.1
+apk	SDK packages	2026-11-24T05:36:03.7067751Z yes: standard output: Broken pipe
+apk	SDK packages	2026-11-24T05:36:03.7069607Z MISSING: cmake;3.22.1
+apk	SDK packages	2026-11-24T05:36:03.7070087Z == sdkmanager ndk;27.0.12077973
+apk	SDK packages	2026-11-24T05:36:16.4819984Z yes: standard output: Broken pipe
+apk	SDK packages	2026-11-24T05:36:16.4820788Z MISSING: ndk;27.0.12077973
+apk	SDK packages	2026-11-24T05:36:16.4821122Z == sdkmanager ndk;28.2.13676358
+apk	SDK packages	2026-11-24T05:36:29.2329807Z yes: standard output: Broken pipe
+apk	SDK packages	2026-11-24T05:36:29.2330677Z MISSING: ndk;28.2.13676358
+apk	SDK packages	2026-11-24T05:36:29.2343023Z 27.0.12077973
+apk	SDK packages	2026-11-24T05:36:29.2343312Z 27.3.13750724
+apk	SDK packages	2026-11-24T05:36:29.2343508Z 28.2.13676358
+apk	SDK packages	2026-11-24T05:36:29.2343709Z 29.0.14206865
+apk	SDK packages	2026-11-24T05:36:29.2344043Z 30.0.16248370
+apk	SDK packages	2026-11-24T05:36:29.2354423Z android-34
+apk	SDK packages	2026-11-24T05:36:29.2354707Z android-34-ext10
+apk	SDK packages	2026-11-24T05:36:29.2355279Z android-34-ext11
+apk	SDK packages	2026-11-24T05:36:29.2355479Z android-34-ext12
+apk	SDK packages	2026-11-24T05:36:29.2355669Z android-34-ext8
+apk	SDK packages	2026-11-24T05:36:29.2355859Z android-35
+apk	SDK packages	2026-11-24T05:36:29.2356058Z android-35-ext14
+apk	SDK packages	2026-11-24T05:36:29.2356297Z android-35-ext15
+apk	SDK packages	2026-11-24T05:36:29.2356724Z android-36
+apk	SDK packages	2026-11-24T05:36:29.2356909Z android-36-ext18
+apk	SDK packages	2026-11-24T05:36:29.2357094Z android-36-ext19
+apk	SDK packages	2026-11-24T05:36:29.2357254Z android-36.1
+apk	SDK packages	2026-11-24T05:36:29.2357403Z android-37.0
+apk	SDK packages	2026-11-24T05:36:29.2357547Z android-37.1
+apk	SDK packages	2026-11-24T05:36:29.2357691Z android-37.2
+apk	SDK packages	2026-11-24T05:36:29.2357859Z android-37.2-beta1
+apk	SDK packages	2026-11-24T05:36:29.2358026Z android-37.2-beta2
+apk	SDK packages	2026-11-24T05:36:29.2358199Z android-37.2-beta3
+apk	Build	﻿2026-11-24T05:36:29.2389311Z ##[group]Run set -uo pipefail
+apk	Build	2026-11-24T05:36:29.2389678Z ^[[36;1mset -uo pipefail^[[0m
+apk	Build	2026-11-24T05:36:29.2389924Z ^[[36;1mchmod +x gradlew^[[0m
+apk	Build	2026-11-24T05:36:29.2390292Z ^[[36;1m./gradlew "$TASK" --no-daemon --stacktrace 2>&1 | tee build.log | tail -400^[[0m
+apk	Build	2026-11-24T05:36:29.2390730Z ^[[36;1mrc=${PIPESTATUS[0]}^[[0m
+apk	Build	2026-11-24T05:36:29.2390986Z ^[[36;1mecho "== rc=$rc"^[[0m
+apk	Build	2026-11-24T05:36:29.2391223Z ^[[36;1mif [ "$rc" != 0 ]; then^[[0m
+apk	Build	2026-11-24T05:36:29.2391487Z ^[[36;1m  echo "== npm/webui context"^[[0m
+apk	Build	2026-11-24T05:36:29.2391873Z ^[[36;1m  grep -n -B3 -A25 -E "npm|EBADENGINE|webui" build.log | head -120 || true^[[0m
+apk	Build	2026-11-24T05:36:29.2392234Z ^[[36;1mfi^[[0m
+apk	Build	2026-11-24T05:36:29.2392444Z ^[[36;1mtest -f build.log^[[0m
+apk	Build	2026-11-24T05:36:29.2420174Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+apk	Build	2026-11-24T05:36:29.2420447Z env:
+apk	Build	2026-11-24T05:36:29.2420601Z   APP_REF: dev
+apk	Build	2026-11-24T05:36:29.2420791Z   TASK: :app:assembleDebug
+apk	Build	2026-11-24T05:36:29.2421050Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	Build	2026-11-24T05:36:29.2421474Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	Build	2026-11-24T05:36:29.2421747Z ##[endgroup]
+apk	Build	2026-11-24T05:42:36.6604156Z Downloading https://services.gradle.org/distributions/gradle-9.6.0-bin.zip
+apk	Build	2026-11-24T05:42:36.6611226Z .............10%.............20%..............30%.............40%..............50%.............60%.............70%..............80%.............90%..............100%
+apk	Build	2026-11-24T05:42:36.6611563Z 
+apk	Build	2026-11-24T05:42:36.6611685Z Welcome to Gradle 9.6.0!
+apk	Build	2026-11-24T05:42:36.6611801Z 
+apk	Build	2026-11-24T05:42:36.6611932Z Here are the highlights of this release:
+apk	Build	2026-11-24T05:42:36.6612199Z  - Improved Configuration Cache hit rates
+apk	Build	2026-11-24T05:42:36.6612466Z  - Additional CLI rendering options
+apk	Build	2026-11-24T05:42:36.6612719Z  - Important project hierarchy lookup deprecations
+apk	Build	2026-11-24T05:42:36.6612883Z 
+apk	Build	2026-11-24T05:42:36.6613087Z For more details see https://docs.gradle.org/9.6.0/release-notes.html
+apk	Build	2026-11-24T05:42:36.6613306Z 
+apk	Build	2026-11-24T05:42:36.6613998Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.6.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+apk	Build	2026-11-24T05:42:36.6614789Z Daemon will be stopped at the end of the build 
+apk	Build	2026-11-24T05:42:36.6614945Z 
+apk	Build	2026-11-24T05:42:36.6615037Z > Configure project :app
+apk	Build	2026-11-24T05:42:36.6615741Z w: file:///home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/DroidVM/app/build.gradle.kts:164:18: 'fun srcDir(srcDir: Any): Any' is deprecated. Use `directories` mutable set instead.
+apk	Build	2026-11-24T05:42:36.6616672Z w: file:///home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/DroidVM/app/build.gradle.kts:166:23: 'fun srcDir(srcDir: Any): Any' is deprecated. Use `directories` mutable set instead.
+apk	Build	2026-11-24T05:42:36.6617598Z w: file:///home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/DroidVM/app/build.gradle.kts:169:20: 'fun srcDir(srcDir: Any): Any' is deprecated. Use `directories` mutable set instead.
+apk	Build	2026-11-24T05:42:36.6618132Z Version name: 0.0.0.r1.g39436c6
+apk	Build	2026-11-24T05:42:36.6618317Z Version code: 10
+apk	Build	2026-11-24T05:42:36.6618407Z 
+apk	Build	2026-11-24T05:42:36.6618517Z > Task :app:preBuild UP-TO-DATE
+apk	Build	2026-11-24T05:42:36.6618742Z > Task :app:preDebugBuild UP-TO-DATE
+apk	Build	2026-11-24T05:42:36.6619253Z > Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+apk	Build	2026-11-24T05:42:36.6619531Z > Task :app:generateDebugBuildConfig
+apk	Build	2026-11-24T05:42:36.6619763Z > Task :app:generateDebugResources
+apk	Build	2026-11-24T05:42:36.6619992Z > Task :app:packageDebugResources
+apk	Build	2026-11-24T05:42:36.6620212Z > Task :app:compileDebugAidl
+apk	Build	2026-11-24T05:42:36.6620451Z > Task :app:processDebugNavigationResources
+apk	Build	2026-11-24T05:42:36.6620697Z > Task :app:parseDebugLocalResources
+apk	Build	2026-11-24T05:42:36.6620923Z > Task :app:javaPreCompileDebug
+apk	Build	2026-11-24T05:42:36.6621136Z > Task :app:generateDebugRFile
+apk	Build	2026-11-24T05:42:36.6621259Z 
+apk	Build	2026-11-24T05:42:36.6621362Z > Task :app:installWebUiDependencies
+apk	Build	2026-11-24T05:42:36.6621688Z 
+apk	Build	2026-11-24T05:42:36.6621924Z npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+apk	Build	2026-11-24T05:42:36.6622241Z added 276 packages in 5s
+apk	Build	2026-11-24T05:42:36.6622536Z npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+apk	Build	2026-11-24T05:42:36.6622820Z npm warn install-scripts
+apk	Build	2026-11-24T05:42:36.6623220Z npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+apk	Build	2026-11-24T05:42:36.6623514Z 
+apk	Build	2026-11-24T05:42:36.6623596Z > Task :app:buildWebUi
+apk	Build	2026-11-24T05:42:36.6623696Z 
+apk	Build	2026-11-24T05:42:36.6623786Z > droidvm-webui@0.1.0 build
+apk	Build	2026-11-24T05:42:36.6624054Z > npm run check && vite build && node scripts/check-dist.mjs
+apk	Build	2026-11-24T05:42:36.6624224Z 
+apk	Build	2026-11-24T05:42:36.6624229Z 
+apk	Build	2026-11-24T05:42:36.6624310Z > droidvm-webui@0.1.0 check
+apk	Build	2026-11-24T05:42:36.6624836Z > npm run format:check && npm run contract:check && npm run theme:check && npm run typecheck && npm run lint && npm run architecture && npm run test
+apk	Build	2026-11-24T05:42:36.6625166Z 
+apk	Build	2026-11-24T05:42:36.6625170Z 
+apk	Build	2026-11-24T05:42:36.6625276Z > droidvm-webui@0.1.0 format:check
+apk	Build	2026-11-24T05:42:36.6625481Z > prettier --check .
+apk	Build	2026-11-24T05:42:36.6625587Z 
+apk	Build	2026-11-24T05:42:36.6625665Z Checking formatting...
+apk	Build	2026-11-24T05:42:36.6625958Z All matched files use Prettier code style!
+apk	Build	2026-11-24T05:42:36.6626099Z 
+apk	Build	2026-11-24T05:42:36.6626205Z > droidvm-webui@0.1.0 contract:check
+apk	Build	2026-11-24T05:42:36.6626433Z > node scripts/contracts.mjs --check
+apk	Build	2026-11-24T05:42:36.6626558Z 
+apk	Build	2026-11-24T05:42:36.6626562Z 
+apk	Build	2026-11-24T05:42:36.6626668Z > droidvm-webui@0.1.0 theme:check
+apk	Build	2026-11-24T05:42:36.6626886Z > node scripts/theme.mjs --check
+apk	Build	2026-11-24T05:42:36.6627011Z 
+apk	Build	2026-11-24T05:42:36.6627016Z 
+apk	Build	2026-11-24T05:42:36.6627111Z > droidvm-webui@0.1.0 typecheck
+apk	Build	2026-11-24T05:42:36.6627321Z > vue-tsc --noEmit
+apk	Build	2026-11-24T05:42:36.6627417Z 
+apk	Build	2026-11-24T05:42:36.6627422Z 
+apk	Build	2026-11-24T05:42:36.6627533Z > Task :app:compileDebugKotlin
+apk	Build	2026-11-24T05:42:36.6628439Z w: file:///home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/DroidVM/app/src/main/vendor/com/mikepenz/markdown/annotator/AnnotatedStringKtx.kt:88:22 'constructor(flavour: MarkdownFlavourDescriptor): MarkdownParser' is deprecated. Use constructor with CancellationToken.
+apk	Build	2026-11-24T05:42:36.6630066Z w: file:///home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/DroidVM/app/src/main/vendor/com/mikepenz/markdown/annotator/AnnotatedStringKtx.kt:88:46 'fun buildMarkdownTreeFromString(text: String): ASTNode' is deprecated. Use the CharSequence overload.
+apk	Build	2026-11-24T05:42:36.6631450Z w: file:///home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/DroidVM/app/src/main/vendor/com/mikepenz/markdown/compose/Markdown.kt:102:30 'constructor(flavour: MarkdownFlavourDescriptor): MarkdownParser' is deprecated. Use constructor with CancellationToken.
+apk	Build	2026-11-24T05:42:36.6632809Z w: file:///home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/DroidVM/app/src/main/vendor/com/mikepenz/markdown/m3/Markdown.kt:70:30 'constructor(flavour: MarkdownFlavourDescriptor): MarkdownParser' is deprecated. Use constructor with CancellationToken.
+apk	Build	2026-11-24T05:42:36.6634187Z w: file:///home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/DroidVM/app/src/main/vendor/com/mikepenz/markdown/model/MarkdownState.kt:46:50 'constructor(flavour: MarkdownFlavourDescriptor): MarkdownParser' is deprecated. Use constructor with CancellationToken.
+apk	Build	2026-11-24T05:42:36.6635652Z w: file:///home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/DroidVM/app/src/main/vendor/com/mikepenz/markdown/model/MarkdownState.kt:108:50 'constructor(flavour: MarkdownFlavourDescriptor): MarkdownParser' is deprecated. Use constructor with CancellationToken.
+apk	Build	2026-11-24T05:42:36.6637004Z w: file:///home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/DroidVM/app/src/main/vendor/com/mikepenz/markdown/model/MarkdownState.kt:221:45 'fun buildMarkdownTreeFromString(text: String): ASTNode' is deprecated. Use the CharSequence overload.
+apk	Build	2026-11-24T05:42:36.6638445Z w: file:///home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/DroidVM/app/src/main/vendor/com/mikepenz/markdown/model/MarkdownState.kt:253:30 'constructor(flavour: MarkdownFlavourDescriptor): MarkdownParser' is deprecated. Use constructor with CancellationToken.
+apk	Build	2026-11-24T05:42:36.6639967Z w: file:///home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/DroidVM/app/src/main/vendor/com/mikepenz/markdown/model/MarkdownState.kt:292:30 'constructor(flavour: MarkdownFlavourDescriptor): MarkdownParser' is deprecated. Use constructor with CancellationToken.
+apk	Build	2026-11-24T05:42:36.6641347Z w: file:///home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/DroidVM/app/src/main/vendor/com/mikepenz/markdown/model/MarkdownState.kt:323:30 'constructor(flavour: MarkdownFlavourDescriptor): MarkdownParser' is deprecated. Use constructor with CancellationToken.
+apk	Build	2026-11-24T05:42:36.6641975Z 
+apk	Build	2026-11-24T05:42:36.6642060Z > Task :app:buildWebUi
+apk	Build	2026-11-24T05:42:36.6642184Z 
+apk	Build	2026-11-24T05:42:36.6642295Z > droidvm-webui@0.1.0 lint
+apk	Build	2026-11-24T05:42:36.6642518Z > eslint . --max-warnings 0
+apk	Build	2026-11-24T05:42:36.6642633Z 
+apk	Build	2026-11-24T05:42:36.6642651Z 
+apk	Build	2026-11-24T05:42:36.6642758Z > droidvm-webui@0.1.0 architecture
+apk	Build	2026-11-24T05:42:36.6643032Z > depcruise src --config .dependency-cruiser.cjs
+apk	Build	2026-11-24T05:42:36.6643265Z 
+apk	Build	2026-11-24T05:42:36.6643269Z 
+apk	Build	2026-11-24T05:42:36.6643765Z ✔ no dependency violations found (310 modules, 1608 dependencies cruised)
+apk	Build	2026-11-24T05:42:36.6644277Z 
+apk	Build	2026-11-24T05:42:36.6644286Z 
+apk	Build	2026-11-24T05:42:36.6644384Z > droidvm-webui@0.1.0 test
+apk	Build	2026-11-24T05:42:36.6644596Z > vitest run
+apk	Build	2026-11-24T05:42:36.6644708Z 
+apk	Build	2026-11-24T05:42:36.6644713Z 
+apk	Build	2026-11-24T05:42:36.6645153Z ^[[1m^[[46m RUN ^[[49m^[[22m ^[[36mv4.0.18 ^[[39m^[[90m/home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/DroidVM/webui^[[39m
+apk	Build	2026-11-24T05:42:36.6645466Z 
+apk	Build	2026-11-24T05:42:36.6646117Z  ^[[32m✓^[[39m tests/unit/session.test.ts ^[[2m(^[[22m^[[2m17 tests^[[22m^[[2m)^[[22m^[[32m 59^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6646688Z  ^[[32m✓^[[39m tests/unit/package-operation-recovery.test.ts ^[[2m(^[[22m^[[2m5 tests^[[22m^[[2m)^[[22m^[[32m 24^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6647271Z  ^[[32m✓^[[39m tests/unit/disk-operations.test.ts ^[[2m(^[[22m^[[2m10 tests^[[22m^[[2m)^[[22m^[[32m 33^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6647815Z  ^[[32m✓^[[39m tests/unit/operation-journal.test.ts ^[[2m(^[[22m^[[2m6 tests^[[22m^[[2m)^[[22m^[[32m 22^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6648378Z  ^[[32m✓^[[39m tests/unit/chunked-upload-recovery.test.ts ^[[2m(^[[22m^[[2m5 tests^[[22m^[[2m)^[[22m^[[32m 69^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6649102Z  ^[[32m✓^[[39m tests/unit/package-download-recovery.test.ts ^[[2m(^[[22m^[[2m8 tests^[[22m^[[2m)^[[22m^[[32m 19^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6649673Z  ^[[32m✓^[[39m tests/unit/usb-rules.test.ts ^[[2m(^[[22m^[[2m6 tests^[[22m^[[2m)^[[22m^[[32m 90^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6650229Z  ^[[32m✓^[[39m tests/unit/transfer-operation-recovery.test.ts ^[[2m(^[[22m^[[2m6 tests^[[22m^[[2m)^[[22m^[[32m 38^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6650834Z  ^[[32m✓^[[39m tests/unit/preference-operation-recovery.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[32m 14^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6651393Z  ^[[32m✓^[[39m tests/unit/image-import.test.ts ^[[2m(^[[22m^[[2m7 tests^[[22m^[[2m)^[[22m^[[32m 20^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6651903Z  ^[[32m✓^[[39m tests/unit/readClient.test.ts ^[[2m(^[[22m^[[2m23 tests^[[22m^[[2m)^[[22m^[[32m 51^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6652478Z  ^[[32m✓^[[39m tests/unit/host-control-operation-recovery.test.ts ^[[2m(^[[22m^[[2m3 tests^[[22m^[[2m)^[[22m^[[32m 18^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6653016Z  ^[[32m✓^[[39m tests/unit/tasks.test.ts ^[[2m(^[[22m^[[2m19 tests^[[22m^[[2m)^[[22m^[[32m 36^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6653520Z  ^[[32m✓^[[39m tests/unit/image-disk-recovery.test.ts ^[[2m(^[[22m^[[2m5 tests^[[22m^[[2m)^[[22m^[[32m 16^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6654052Z  ^[[32m✓^[[39m tests/unit/package-import.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[32m 25^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6654574Z  ^[[32m✓^[[39m tests/unit/vmOperations.test.ts ^[[2m(^[[22m^[[2m18 tests^[[22m^[[2m)^[[22m^[[32m 64^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6655151Z  ^[[32m✓^[[39m tests/unit/hugepages.test.ts ^[[2m(^[[22m^[[2m6 tests^[[22m^[[2m)^[[22m^[[32m 20^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6655681Z  ^[[32m✓^[[39m tests/unit/configuration-networks.test.ts ^[[2m(^[[22m^[[2m5 tests^[[22m^[[2m)^[[22m^[[32m 9^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6656266Z  ^[[32m✓^[[39m tests/unit/configuration-recovery.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[32m 24^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6656854Z  ^[[32m✓^[[39m tests/unit/configuration-peripherals.test.ts ^[[2m(^[[22m^[[2m5 tests^[[22m^[[2m)^[[22m^[[32m 12^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6657387Z  ^[[32m✓^[[39m tests/unit/graphics.test.ts ^[[2m(^[[22m^[[2m6 tests^[[22m^[[2m)^[[22m^[[32m 10^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6657934Z  ^[[32m✓^[[39m tests/unit/network-operation-recovery.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[32m 18^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6658478Z  ^[[32m✓^[[39m tests/unit/agent-rescue.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[32m 12^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6660303Z  ^[[32m✓^[[39m tests/unit/usb-acm.test.ts ^[[2m(^[[22m^[[2m5 tests^[[22m^[[2m)^[[22m^[[32m 11^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6660812Z  ^[[32m✓^[[39m tests/unit/terminal.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[32m 34^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6661396Z  ^[[32m✓^[[39m tests/unit/package-export.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[32m 15^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6661902Z  ^[[32m✓^[[39m tests/unit/resize-grow.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[32m 165^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6662506Z  ^[[32m✓^[[39m tests/unit/hugepage-operation-recovery.test.ts ^[[2m(^[[22m^[[2m3 tests^[[22m^[[2m)^[[22m^[[32m 17^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6663048Z  ^[[32m✓^[[39m tests/unit/web-service.test.ts ^[[2m(^[[22m^[[2m6 tests^[[22m^[[2m)^[[22m^[[32m 12^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6663563Z  ^[[32m✓^[[39m tests/unit/network-deletion.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[32m 14^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6664078Z  ^[[32m✓^[[39m tests/unit/android-display.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[32m 9^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6664631Z  ^[[32m✓^[[39m tests/unit/configuration-backup.test.ts ^[[2m(^[[22m^[[2m9 tests^[[22m^[[2m)^[[22m^[[32m 15^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6665178Z  ^[[32m✓^[[39m tests/unit/hugepage-processes.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[32m 12^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6665725Z  ^[[32m✓^[[39m tests/unit/package-transfers.test.ts ^[[2m(^[[22m^[[2m8 tests^[[22m^[[2m)^[[22m^[[32m 13^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6666249Z  ^[[32m✓^[[39m tests/unit/disk-optimization.test.ts ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m)^[[22m^[[32m 11^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6666823Z  ^[[32m✓^[[39m tests/unit/image-transfers.test.ts ^[[2m(^[[22m^[[2m3 tests^[[22m^[[2m)^[[22m^[[32m 13^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6667336Z  ^[[32m✓^[[39m tests/unit/usb-operations.test.ts ^[[2m(^[[22m^[[2m3 tests^[[22m^[[2m)^[[22m^[[32m 14^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6667856Z  ^[[32m✓^[[39m tests/unit/configuration-copy.test.ts ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m)^[[22m^[[32m 18^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6668386Z  ^[[32m✓^[[39m tests/unit/disk-defaults.test.ts ^[[2m(^[[22m^[[2m3 tests^[[22m^[[2m)^[[22m^[[32m 12^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6669049Z  ^[[32m✓^[[39m tests/unit/network-editor.test.ts ^[[2m(^[[22m^[[2m5 tests^[[22m^[[2m)^[[22m^[[32m 24^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6669567Z  ^[[32m✓^[[39m tests/unit/logs.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[32m 71^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6670075Z  ^[[32m✓^[[39m tests/unit/configuration-leases.test.ts ^[[2m(^[[22m^[[2m3 tests^[[22m^[[2m)^[[22m^[[32m 5^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6670605Z  ^[[32m✓^[[39m tests/unit/host-overview.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[32m 15^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6671151Z  ^[[32m✓^[[39m tests/unit/configuration-graphics.test.ts ^[[2m(^[[22m^[[2m3 tests^[[22m^[[2m)^[[22m^[[32m 9^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6671664Z  ^[[32m✓^[[39m tests/unit/events.test.ts ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m)^[[22m^[[32m 8^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6672173Z  ^[[32m✓^[[39m tests/unit/host-preferences.test.ts ^[[2m(^[[22m^[[2m3 tests^[[22m^[[2m)^[[22m^[[32m 11^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6672779Z  ^[[32m✓^[[39m tests/unit/cpu-placement.test.ts ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m)^[[22m^[[32m 6^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6673301Z  ^[[32m✓^[[39m tests/unit/network-runtime.test.ts ^[[2m(^[[22m^[[2m3 tests^[[22m^[[2m)^[[22m^[[32m 13^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6673833Z  ^[[32m✓^[[39m tests/unit/host-capabilities.test.ts ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m)^[[22m^[[32m 6^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6674341Z  ^[[32m✓^[[39m tests/unit/usb-catalog.test.ts ^[[2m(^[[22m^[[2m1 test^[[22m^[[2m)^[[22m^[[32m 7^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6674822Z  ^[[32m✓^[[39m tests/unit/inventory.test.ts ^[[2m(^[[22m^[[2m6 tests^[[22m^[[2m)^[[22m^[[32m 9^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6675323Z  ^[[32m✓^[[39m tests/unit/task-receipts.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[32m 9^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6675829Z  ^[[32m✓^[[39m tests/unit/configuration.test.ts ^[[2m(^[[22m^[[2m3 tests^[[22m^[[2m)^[[22m^[[32m 13^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6676370Z  ^[[32m✓^[[39m tests/unit/configuration-create.test.ts ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m)^[[22m^[[32m 13^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6676920Z  ^[[32m✓^[[39m tests/unit/configuration-storage.test.ts ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m)^[[22m^[[32m 5^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6677579Z  ^[[32m✓^[[39m tests/unit/disk-details.test.ts ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m)^[[22m^[[32m 10^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6678102Z  ^[[32m✓^[[39m tests/unit/attachments.test.ts ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m)^[[22m^[[32m 6^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6678616Z  ^[[32m✓^[[39m tests/unit/cpu-picker.test.ts ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m)^[[22m^[[32m 6^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6679316Z  ^[[32m✓^[[39m tests/unit/configuration-basic.test.ts ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m)^[[22m^[[32m 5^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6679908Z  ^[[32m✓^[[39m tests/unit/configuration-screens.test.ts ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m)^[[22m^[[32m 6^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6680461Z  ^[[32m✓^[[39m tests/unit/capabilities.test.ts ^[[2m(^[[22m^[[2m5 tests^[[22m^[[2m)^[[22m^[[32m 8^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6680995Z  ^[[32m✓^[[39m tests/unit/audio-catalog.test.ts ^[[2m(^[[22m^[[2m1 test^[[22m^[[2m)^[[22m^[[32m 10^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6681545Z  ^[[32m✓^[[39m tests/unit/configuration-snapshot.test.ts ^[[2m(^[[22m^[[2m1 test^[[22m^[[2m)^[[22m^[[32m 5^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6682101Z  ^[[32m✓^[[39m tests/unit/i18n.test.ts ^[[2m(^[[22m^[[2m17 tests^[[22m^[[2m)^[[22m^[[33m 418^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6682716Z      ^[[33m^[[2m✓^[[22m^[[39m production has matching keys and interpolation parameters, and every message renders ^[[33m 409^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6683297Z  ^[[32m✓^[[39m tests/unit/errors.test.ts ^[[2m(^[[22m^[[2m7 tests^[[22m^[[2m)^[[22m^[[32m 4^[[2mms^[[22m^[[39m
+apk	Build	2026-11-24T05:42:36.6683540Z 
+apk	Build	2026-11-24T05:42:36.6683760Z ^[[2m Test Files ^[[22m ^[[1m^[[32m65 passed^[[39m^[[22m^[[90m (65)^[[39m
+apk	Build	2026-11-24T05:42:36.6684223Z ^[[2m      Tests ^[[22m ^[[1m^[[32m338 passed^[[39m^[[22m^[[90m (338)^[[39m
+apk	Build	2026-11-24T05:42:36.6684579Z ^[[2m   Start at ^[[22m 05:38:08
+apk	Build	2026-11-24T05:42:36.6685049Z ^[[2m   Duration ^[[22m 7.54s^[[2m (transform 3.01s, setup 0ms, import 13.44s, tests 1.79s, environment 7ms)^[[22m
+apk	Build	2026-11-24T05:42:36.6685329Z 
+apk	Build	2026-11-24T05:42:36.6685601Z ^[[36mvite v8.3.4 ^[[32mbuilding client environment for production...^[[36m^[[39m
+apk	Build	2026-11-24T05:42:36.6685901Z transforming...
+apk	Build	2026-11-24T05:42:36.6686143Z ✓ 674 modules transformed.
+apk	Build	2026-11-24T05:42:36.6686349Z rendering chunks...
+apk	Build	2026-11-24T05:42:36.6686544Z computing gzip size...
+apk	Build	2026-11-24T05:42:36.6686898Z dist/index.html                                      2.47 kB │ gzip:   0.75 kB
+apk	Build	2026-11-24T05:42:36.6687337Z dist/assets/style-C5tihPVV.css                     104.43 kB │ gzip:  17.73 kB
+apk	Build	2026-11-24T05:42:36.6687841Z dist/assets/NotFoundPage-g2_L-WWD.js                 0.38 kB │ gzip:   0.27 kB
+apk	Build	2026-11-24T05:42:36.6688280Z dist/assets/HostPage-Dk9ftXMc.js                     0.42 kB │ gzip:   0.31 kB
+apk	Build	2026-11-24T05:42:36.6688723Z dist/assets/WebServicePage-BUah9C3T.js               0.44 kB │ gzip:   0.32 kB
+apk	Build	2026-11-24T05:42:36.6689378Z dist/assets/ConfigurationBackupPage-C3YXGMu_.js      0.44 kB │ gzip:   0.32 kB
+apk	Build	2026-11-24T05:42:36.6689848Z dist/assets/PackageTransfersPage-CfCHC0l-.js         0.46 kB │ gzip:   0.33 kB
+apk	Build	2026-11-24T05:42:36.6690307Z dist/assets/ImageImportPage-ByaBkQ1_.js              0.46 kB │ gzip:   0.33 kB
+apk	Build	2026-11-24T05:42:36.6690765Z dist/assets/PackageImportPage-PazBkp21.js            0.47 kB │ gzip:   0.34 kB
+apk	Build	2026-11-24T05:42:36.6691220Z dist/assets/PackageExportPage-BakPQ3Rh.js            1.06 kB │ gzip:   0.65 kB
+apk	Build	2026-11-24T05:42:36.6691668Z dist/assets/AgentRescuePage-DQFO7j9g.js              1.22 kB │ gzip:   0.69 kB
+apk	Build	2026-11-24T05:42:36.6692109Z dist/assets/UsbRulesPage-_-jAydek.js                 1.29 kB │ gzip:   0.76 kB
+apk	Build	2026-11-24T05:42:36.6692548Z dist/assets/ResourcesPage-DkaPncCY.js                1.51 kB │ gzip:   0.77 kB
+apk	Build	2026-11-24T05:42:36.6692996Z dist/assets/NetworkEditPage-DRmesZgZ.js              1.61 kB │ gzip:   0.89 kB
+apk	Build	2026-11-24T05:42:36.6693433Z dist/assets/labels-Clj9qD7_.js                       1.66 kB │ gzip:   0.76 kB
+apk	Build	2026-11-24T05:42:36.6693859Z dist/assets/VmEditPage-DKxsybmI.js                   1.87 kB │ gzip:   1.03 kB
+apk	Build	2026-11-24T05:42:36.6694302Z dist/assets/HugepagesAdvancedPage-uBqwjV9_.js        2.78 kB │ gzip:   1.15 kB
+apk	Build	2026-11-24T05:42:36.6694806Z dist/assets/operations-CRx-_MsW.js                   2.99 kB │ gzip:   1.39 kB
+apk	Build	2026-11-24T05:42:36.6695239Z dist/assets/TasksPage-BQGu_iAL.js                    3.69 kB │ gzip:   1.67 kB
+apk	Build	2026-11-24T05:42:36.6695658Z dist/assets/tasks-CmkyadiN.js                        4.73 kB │ gzip:   1.83 kB
+apk	Build	2026-11-24T05:42:36.6696091Z dist/assets/HostPreferencesPage-BE6-UnLj.js          5.10 kB │ gzip:   1.67 kB
+apk	Build	2026-11-24T05:42:36.6696540Z dist/assets/androidDisplay-nzlg6jy9.js               5.59 kB │ gzip:   2.33 kB
+apk	Build	2026-11-24T05:42:36.6696975Z dist/assets/diskDefaults-BXOwi_oZ.js                 5.89 kB │ gzip:   2.26 kB
+apk	Build	2026-11-24T05:42:36.6697410Z dist/assets/session-AQHw6gcM.js                      6.43 kB │ gzip:   2.53 kB
+apk	Build	2026-11-24T05:42:36.6697842Z dist/assets/usbAcm-rpq4wZR4.js                       6.57 kB │ gzip:   2.63 kB
+apk	Build	2026-11-24T05:42:36.6698344Z dist/assets/hostPreferences-DFwOLExd.js              6.60 kB │ gzip:   2.66 kB
+apk	Build	2026-11-24T05:42:36.6698809Z dist/assets/HomePage-QaqhNGrp.js                     6.80 kB │ gzip:   2.45 kB
+apk	Build	2026-11-24T05:42:36.6699503Z dist/assets/MorePage-pBrk2bPm.js                     7.36 kB │ gzip:   2.54 kB
+apk	Build	2026-11-24T05:42:36.6699989Z dist/assets/DiskDefaultsPage-BL-LzGWL.js             7.39 kB │ gzip:   2.04 kB
+apk	Build	2026-11-24T05:42:36.6700460Z dist/assets/hugepage-processes-BSxo0etj.js           7.63 kB │ gzip:   2.96 kB
+apk	Build	2026-11-24T05:42:36.6700924Z dist/assets/UsbAcmPage-DiPcWeo0.js                   8.58 kB │ gzip:   2.44 kB
+apk	Build	2026-11-24T05:42:36.6701378Z dist/assets/HugepagesPage-Be_qbEio.js                9.39 kB │ gzip:   3.11 kB
+apk	Build	2026-11-24T05:42:36.6701841Z dist/assets/AndroidDisplayPage-ynyg4XtP.js          10.48 kB │ gzip:   2.78 kB
+apk	Build	2026-11-24T05:42:36.6702660Z dist/assets/host-QLUXBMgn.js                        10.68 kB │ gzip:   3.43 kB
+apk	Build	2026-11-24T05:42:36.6703175Z dist/assets/HugepageProcessesPage-CU5x9VPi.js       11.03 kB │ gzip:   3.37 kB
+apk	Build	2026-11-24T05:42:36.6703753Z dist/assets/backups-B3NK9R1s.js                     12.15 kB │ gzip:   4.17 kB
+apk	Build	2026-11-24T05:42:36.6704269Z dist/assets/webService-Cu4OXCRM.js                  14.65 kB │ gzip:   4.54 kB
+apk	Build	2026-11-24T05:42:36.6704772Z dist/assets/hugepages-tL33DkQF.js                   20.29 kB │ gzip:   6.78 kB
+apk	Build	2026-11-24T05:42:36.6705318Z dist/assets/usbRules-CBnN38Qi.js                    25.27 kB │ gzip:   8.30 kB
+apk	Build	2026-11-24T05:42:36.6705829Z dist/assets/images-D4zBS9__.js                      29.78 kB │ gzip:   7.99 kB
+apk	Build	2026-11-24T05:42:36.6706371Z dist/assets/packages-BLUcLbaC.js                    47.20 kB │ gzip:  11.86 kB
+apk	Build	2026-11-24T05:42:36.6706883Z dist/assets/networks-P998qZ2V.js                    50.34 kB │ gzip:  15.12 kB
+apk	Build	2026-11-24T05:42:36.6707376Z dist/assets/agent-C1lmGIn-.js                       51.26 kB │ gzip:  15.57 kB
+apk	Build	2026-11-24T05:42:36.6707985Z dist/assets/index-CWuLlue-.js                       61.26 kB │ gzip:  19.21 kB
+apk	Build	2026-11-24T05:42:36.6708536Z dist/assets/resources-BP-7Zts6.js                   81.30 kB │ gzip:  22.05 kB
+apk	Build	2026-11-24T05:42:36.6709207Z dist/assets/vm-DZEuSe-n.js                         103.25 kB │ gzip:  32.07 kB
+apk	Build	2026-11-24T05:42:36.6709703Z dist/assets/material-C1tZu9yv.js                   240.22 kB │ gzip:  48.14 kB
+apk	Build	2026-11-24T05:42:36.6710183Z dist/assets/shared-D6ex2F1l.js                     348.76 kB │ gzip: 118.91 kB
+apk	Build	2026-11-24T05:42:36.6710701Z dist/assets/vendor-DzqNr2G4.js                     689.36 kB │ gzip: 201.22 kB
+apk	Build	2026-11-24T05:42:36.6711194Z dist/assets/contracts-DvfT4vgW.js                1,065.28 kB │ gzip:  98.37 kB
+apk	Build	2026-11-24T05:42:36.6711513Z 
+apk	Build	2026-11-24T05:42:36.6711664Z ^[[32m✓ built in 996ms^[[39m
+apk	Build	2026-11-24T05:42:36.6711975Z ^[[33m[plugin builtin:vite-reporter] 
+apk	Build	2026-11-24T05:42:36.6712398Z (!) Some chunks are larger than 500 kB after minification. Consider:
+apk	Build	2026-11-24T05:42:36.6712804Z - Using dynamic import() to code-split the application
+apk	Build	2026-11-24T05:42:36.6713405Z - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+apk	Build	2026-11-24T05:42:36.6714130Z - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.^[[39m
+apk	Build	2026-11-24T05:42:36.6714541Z 正式产物开发入口与样本隔离检查通过
+apk	Build	2026-11-24T05:42:36.6714700Z 
+apk	Build	2026-11-24T05:42:36.6714869Z > Task :app:compileDebugJavaWithJavac
+apk	Build	2026-11-24T05:42:36.6715223Z Note: Some input files use or override a deprecated API.
+apk	Build	2026-11-24T05:42:36.6715591Z Note: Recompile with -Xlint:deprecation for details.
+apk	Build	2026-11-24T05:42:36.6715797Z 
+apk	Build	2026-11-24T05:42:36.6715916Z > Task :app:embedWebUiAssets
+apk	Build	2026-11-24T05:42:36.6716262Z Embedded 50 production assets: 3090529 bytes, 680362 bytes with gzip
+apk	Build	2026-11-24T05:42:36.6716511Z 
+apk	Build	2026-11-24T05:42:36.6716657Z > Task :app:prepareWebUiNative
+apk	Build	2026-11-24T05:42:36.6716951Z libwebsockets 4.5.8: SHA-256 verified
+apk	Build	2026-11-24T05:42:36.6717128Z 
+apk	Build	2026-11-24T05:42:36.6717266Z > Task :app:configureCMakeDebug[arm64-v8a]
+apk	Build	2026-11-24T05:42:36.6717616Z C/C++: TLS_SESSIONS support requires client, disabling
+apk	Build	2026-11-24T05:42:36.6718007Z C/C++: Deselecting EVLIB_PLUGINS since building static
+apk	Build	2026-11-24T05:42:36.6718325Z C/C++: Git commit hash: 39436c6
+apk	Build	2026-11-24T05:42:36.6719426Z C/C++: DIR /home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/DroidVM/app/.cxx/Debug/4a4tu72s/arm64-v8a/native-daemon/web/libwebsockets CMP /home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/DroidVM/app/build/intermediates/webui_native/deps/libwebsockets/cmake
+apk	Build	2026-11-24T05:42:36.6720182Z 
+apk	Build	2026-11-24T05:42:36.6720319Z > Task :app:buildCMakeDebug[arm64-v8a]
+apk	Build	2026-11-24T05:42:36.6720502Z 
+apk	Build	2026-11-24T05:42:36.6720666Z > Task :app:configureCMakeDebug[x86_64]
+apk	Build	2026-11-24T05:42:36.6721008Z C/C++: TLS_SESSIONS support requires client, disabling
+apk	Build	2026-11-24T05:42:36.6721357Z C/C++: Deselecting EVLIB_PLUGINS since building static
+apk	Build	2026-11-24T05:42:36.6721677Z C/C++: Git commit hash: 39436c6
+apk	Build	2026-11-24T05:42:36.6722598Z C/C++: DIR /home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/DroidVM/app/.cxx/Debug/4a4tu72s/x86_64/native-daemon/web/libwebsockets CMP /home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/DroidVM/app/build/intermediates/webui_native/deps/libwebsockets/cmake
+apk	Build	2026-11-24T05:42:36.6723298Z 
+apk	Build	2026-11-24T05:42:36.6723458Z > Task :app:buildCMakeDebug[x86_64]
+apk	Build	2026-11-24T05:42:36.6723773Z > Task :app:externalNativeBuildDebug
+apk	Build	2026-11-24T05:42:36.6724071Z > Task :app:copyNativeBinAssetsDebug
+apk	Build	2026-11-24T05:42:36.6724348Z 
+apk	Build	2026-11-24T05:42:36.6724482Z > Task :app:generateWebUiNotices
+apk	Build	2026-11-24T05:42:36.6724782Z WebUI third-party notices generated
+apk	Build	2026-11-24T05:42:36.6724966Z 
+apk	Build	2026-11-24T05:42:36.6725126Z > Task :app:copyWebUiNoticesDebug
+apk	Build	2026-11-24T05:42:36.6725437Z > Task :app:fetchTerminalFontDebug
+apk	Build	2026-11-24T05:42:36.6725750Z > Task :app:generateDebugAssets UP-TO-DATE
+apk	Build	2026-11-24T05:42:36.6726068Z > Task :app:regenPrebuilts SKIPPED
+apk	Build	2026-11-24T05:42:36.6726435Z > Task :app:mergeDebugAssets
+apk	Build	2026-11-24T05:42:36.6726780Z > Task :app:generateDebugGlobalSynthetics
+apk	Build	2026-11-24T05:42:36.6727078Z > Task :app:processDebugJavaRes
+apk	Build	2026-11-24T05:42:36.6727356Z > Task :app:compressDebugAssets
+apk	Build	2026-11-24T05:42:36.6727648Z > Task :app:mergeDebugJavaResource
+apk	Build	2026-11-24T05:42:36.6727941Z > Task :app:desugarDebugFileDependencies
+apk	Build	2026-11-24T05:42:36.6728277Z > Task :app:checkDebugDuplicateClasses
+apk	Build	2026-11-24T05:42:36.6728592Z > Task :app:checkDebugAarMetadata
+apk	Build	2026-11-24T05:42:36.6728980Z > Task :app:mergeExtDexDebug
+apk	Build	2026-11-24T05:42:36.6729285Z > Task :app:mapDebugSourceSetPaths
+apk	Build	2026-11-24T05:42:36.6729554Z > Task :app:mergeLibDexDebug
+apk	Build	2026-11-24T05:42:36.6729874Z > Task :app:compileDebugNavigationResources
+apk	Build	2026-11-24T05:42:36.6730237Z > Task :app:createDebugCompatibleScreenManifests
+apk	Build	2026-11-24T05:42:36.6730556Z > Task :app:extractDeepLinksDebug
+apk	Build	2026-11-24T05:42:36.6730852Z > Task :app:processDebugMainManifest
+apk	Build	2026-11-24T05:42:36.6731150Z > Task :app:processDebugManifest
+apk	Build	2026-11-24T05:42:36.6731472Z > Task :app:unpackComptimeJniLibsDebug
+apk	Build	2026-11-24T05:42:36.6731771Z > Task :app:mergeDebugJniLibFolders
+apk	Build	2026-11-24T05:42:36.6732086Z > Task :app:mergeDebugResources
+apk	Build	2026-11-24T05:42:36.6732393Z > Task :app:processDebugManifestForPackage
+apk	Build	2026-11-24T05:42:36.6732765Z > Task :app:mergeDebugNativeLibs
+apk	Build	2026-11-24T05:42:36.6733074Z > Task :app:stripDebugDebugSymbols
+apk	Build	2026-11-24T05:42:36.6733360Z > Task :app:processDebugResources
+apk	Build	2026-11-24T05:42:36.6733670Z > Task :app:validateSigningDebug
+apk	Build	2026-11-24T05:42:36.6733942Z > Task :app:dexBuilderDebug
+apk	Build	2026-11-24T05:42:36.6734235Z > Task :app:writeDebugAppMetadata
+apk	Build	2026-11-24T05:42:36.6734555Z > Task :app:writeDebugSigningConfigVersions
+apk	Build	2026-11-24T05:42:36.6734855Z > Task :app:mergeProjectDexDebug
+apk	Build	2026-11-24T05:42:36.6735104Z > Task :app:packageDebug
+apk	Build	2026-11-24T05:42:36.6735449Z > Task :app:createDebugApkListingFileRedirect
+apk	Build	2026-11-24T05:42:36.6735756Z > Task :app:assembleDebug
+apk	Build	2026-11-24T05:42:36.6735872Z 
+apk	Build	2026-11-24T05:42:36.6736415Z [Incubating] Problems report is available at: file:///home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/DroidVM/build/reports/problems/problems-report.html
+apk	Build	2026-11-24T05:42:36.6736873Z 
+apk	Build	2026-11-24T05:42:36.6737134Z Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+apk	Build	2026-11-24T05:42:36.6737430Z 
+apk	Build	2026-11-24T05:42:36.6737841Z You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+apk	Build	2026-11-24T05:42:36.6738212Z 
+apk	Build	2026-11-24T05:42:36.6738672Z For more on this, please refer to https://docs.gradle.org/9.6.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+apk	Build	2026-11-24T05:42:36.6739323Z 
+apk	Build	2026-11-24T05:42:36.6739434Z BUILD SUCCESSFUL in 6m 6s
+apk	Build	2026-11-24T05:42:36.6739719Z 53 actionable tasks: 53 executed
+apk	Build	2026-11-24T05:42:36.6740006Z == rc=0
+apk	Locate the APK	﻿2026-11-24T05:42:36.6764018Z ##[group]Run set -euo pipefail
+apk	Locate the APK	2026-11-24T05:42:36.6764476Z ^[[36;1mset -euo pipefail^[[0m
+apk	Locate the APK	2026-11-24T05:42:36.6764824Z ^[[36;1mapk=$(find DroidVM/app/build/outputs/apk -name '*.apk' | head -1 || true)^[[0m
+apk	Locate the APK	2026-11-24T05:42:36.6765201Z ^[[36;1mecho "apk=$apk"^[[0m
+apk	Locate the APK	2026-11-24T05:42:36.6765478Z ^[[36;1mif [ -n "$apk" ]; then^[[0m
+apk	Locate the APK	2026-11-24T05:42:36.6765742Z ^[[36;1m  mkdir -p out^[[0m
+apk	Locate the APK	2026-11-24T05:42:36.6765985Z ^[[36;1m  cp "$apk" out/^[[0m
+apk	Locate the APK	2026-11-24T05:42:36.6766299Z ^[[36;1m  sha256sum "out/$(basename "$apk")" | tee out/SHA256SUMS^[[0m
+apk	Locate the APK	2026-11-24T05:42:36.6766620Z ^[[36;1m  ls -l out^[[0m
+apk	Locate the APK	2026-11-24T05:42:36.6766874Z ^[[36;1m  echo "found=1" >> "$GITHUB_OUTPUT"^[[0m
+apk	Locate the APK	2026-11-24T05:42:36.6767137Z ^[[36;1melse^[[0m
+apk	Locate the APK	2026-11-24T05:42:36.6767352Z ^[[36;1m  echo "found=0" >> "$GITHUB_OUTPUT"^[[0m
+apk	Locate the APK	2026-11-24T05:42:36.6767654Z ^[[36;1m  echo "::error::no APK was produced"^[[0m
+apk	Locate the APK	2026-11-24T05:42:36.6767954Z ^[[36;1mfi^[[0m
+apk	Locate the APK	2026-11-24T05:42:36.6795237Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+apk	Locate the APK	2026-11-24T05:42:36.6795619Z env:
+apk	Locate the APK	2026-11-24T05:42:36.6795975Z   APP_REF: dev
+apk	Locate the APK	2026-11-24T05:42:36.6796219Z   TASK: :app:assembleDebug
+apk	Locate the APK	2026-11-24T05:42:36.6796538Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	Locate the APK	2026-11-24T05:42:36.6796942Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	Locate the APK	2026-11-24T05:42:36.6797318Z ##[endgroup]
+apk	Locate the APK	2026-11-24T05:42:36.6856690Z apk=DroidVM/app/build/outputs/apk/debug/app-debug.apk
+apk	Locate the APK	2026-11-24T05:42:36.8570103Z 088383809c051dfa23e0f62c92b1efb0fa412da777b9e07535f6d22633957801  out/app-debug.apk
+apk	Locate the APK	2026-11-24T05:42:36.8584787Z total 139132
+apk	Locate the APK	2026-11-24T05:42:36.8585439Z -rw-r--r-- 1 runner runner        84 Nov 24 05:42 SHA256SUMS
+apk	Locate the APK	2026-11-24T05:42:36.8585926Z -rw-r--r-- 1 runner runner 142465758 Nov 24 05:42 app-debug.apk
+apk	Upload the APK	﻿2026-11-24T05:42:36.8675561Z ##[group]Run actions/upload-artifact@v4
+apk	Upload the APK	2026-11-24T05:42:36.8675869Z with:
+apk	Upload the APK	2026-11-24T05:42:36.8676123Z   name: DroidVM-dev-dev
+apk	Upload the APK	2026-11-24T05:42:36.8676355Z   path: out/
+apk	Upload the APK	2026-11-24T05:42:36.8676564Z   compression-level: 0
+apk	Upload the APK	2026-11-24T05:42:36.8676818Z   retention-days: 14
+apk	Upload the APK	2026-11-24T05:42:36.8677055Z   if-no-files-found: warn
+apk	Upload the APK	2026-11-24T05:42:36.8677311Z   overwrite: false
+apk	Upload the APK	2026-11-24T05:42:36.8677575Z   include-hidden-files: false
+apk	Upload the APK	2026-11-24T05:42:36.8677804Z env:
+apk	Upload the APK	2026-11-24T05:42:36.8678032Z   APP_REF: dev
+apk	Upload the APK	2026-11-24T05:42:36.8678255Z   TASK: :app:assembleDebug
+apk	Upload the APK	2026-11-24T05:42:36.8678706Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	Upload the APK	2026-11-24T05:42:36.8679358Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	Upload the APK	2026-11-24T05:42:36.8679708Z ##[endgroup]
+apk	Upload the APK	2026-11-24T05:42:36.9939473Z (node:9539) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+apk	Upload the APK	2026-11-24T05:42:36.9940162Z (Use `node --trace-deprecation ...` to show where the warning was created)
+apk	Upload the APK	2026-11-24T05:42:37.0003986Z With the provided path, there will be 2 files uploaded
+apk	Upload the APK	2026-11-24T05:42:37.0007401Z Artifact name is valid!
+apk	Upload the APK	2026-11-24T05:42:37.0008280Z Root directory input is valid!
+apk	Upload the APK	2026-11-24T05:42:37.5901683Z Beginning upload of artifact content to blob storage
+apk	Upload the APK	2026-11-24T05:42:37.7513914Z (node:9539) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+apk	Upload the APK	2026-11-24T05:42:38.8919300Z Uploaded bytes 8388608
+apk	Upload the APK	2026-11-24T05:42:38.9117994Z Uploaded bytes 16777216
+apk	Upload the APK	2026-11-24T05:42:38.9536089Z Uploaded bytes 25165824
+apk	Upload the APK	2026-11-24T05:42:38.9624238Z Uploaded bytes 33554432
+apk	Upload the APK	2026-11-24T05:42:39.2453079Z Uploaded bytes 41943040
+apk	Upload the APK	2026-11-24T05:42:39.2938595Z Uploaded bytes 50331648
+apk	Upload the APK	2026-11-24T05:42:39.3031612Z Uploaded bytes 58720256
+apk	Upload the APK	2026-11-24T05:42:39.3755400Z Uploaded bytes 67108864
+apk	Upload the APK	2026-11-24T05:42:39.6252561Z Uploaded bytes 75497472
+apk	Upload the APK	2026-11-24T05:42:39.6736232Z Uploaded bytes 83886080
+apk	Upload the APK	2026-11-24T05:42:39.6960018Z Uploaded bytes 92274688
+apk	Upload the APK	2026-11-24T05:42:39.7053019Z Uploaded bytes 100663296
+apk	Upload the APK	2026-11-24T05:42:40.0257838Z Uploaded bytes 109051904
+apk	Upload the APK	2026-11-24T05:42:40.0386521Z Uploaded bytes 117440512
+apk	Upload the APK	2026-11-24T05:42:40.0670299Z Uploaded bytes 125829120
+apk	Upload the APK	2026-11-24T05:42:40.0905605Z Uploaded bytes 134217728
+apk	Upload the APK	2026-11-24T05:42:40.3880138Z Uploaded bytes 142466094
+apk	Upload the APK	2026-11-24T05:42:40.4810386Z Finished uploading artifact content to blob storage!
+apk	Upload the APK	2026-11-24T05:42:40.4811428Z SHA256 digest of uploaded artifact zip is af1f2037739117534095959e08926c8fe7e889795a75c9a7ede6113fafbb2e39
+apk	Upload the APK	2026-11-24T05:42:40.4812484Z Finalizing artifact upload
+apk	Upload the APK	2026-11-24T05:42:40.8899302Z Artifact DroidVM-dev-dev.zip successfully finalized. Artifact ID 14893227267
+apk	Upload the APK	2026-11-24T05:42:40.8900123Z Artifact DroidVM-dev-dev has been successfully uploaded! Final size is 142466094 bytes. Artifact ID is 14893227267
+apk	Upload the APK	2026-11-24T05:42:40.8906026Z Artifact download URL: https://github.com/ltg20080102/unixnu-droidvm-build/actions/runs/45334347093/artifacts/14893227267
+apk	Publish the APK to the rolling release	﻿2026-11-24T05:42:40.9082050Z ##[group]Run set -euo pipefail
+apk	Publish the APK to the rolling release	2026-11-24T05:42:40.9082380Z ^[[36;1mset -euo pipefail^[[0m
+apk	Publish the APK to the rolling release	2026-11-24T05:42:40.9082706Z ^[[36;1mtag=dev-apk-latest^[[0m
+apk	Publish the APK to the rolling release	2026-11-24T05:42:40.9083088Z ^[[36;1mif ! gh release view "$tag" --repo "ltg20080102/unixnu-droidvm-build" >/dev/null 2>&1; then^[[0m
+apk	Publish the APK to the rolling release	2026-11-24T05:42:40.9083558Z ^[[36;1m  gh release create "$tag" --repo "ltg20080102/unixnu-droidvm-build" \^[[0m
+apk	Publish the APK to the rolling release	2026-11-24T05:42:40.9084004Z ^[[36;1m    --title "DroidVM dev APK (C++ daemon)" \^[[0m
+apk	Publish the APK to the rolling release	2026-11-24T05:42:40.9084618Z ^[[36;1m    --notes "Rolling build of Droid-VM/DroidVM@dev. Debug-signed; uninstall the released app first (different signature)."^[[0m
+apk	Publish the APK to the rolling release	2026-11-24T05:42:40.9085104Z ^[[36;1mfi^[[0m
+apk	Publish the APK to the rolling release	2026-11-24T05:42:40.9085471Z ^[[36;1mgh release upload "$tag" out/*.apk --clobber --repo "ltg20080102/unixnu-droidvm-build"^[[0m
+apk	Publish the APK to the rolling release	2026-11-24T05:42:40.9086103Z ^[[36;1mecho "https://github.com/ltg20080102/unixnu-droidvm-build/releases/download/$tag/$(basename "$(ls out/*.apk | head -1)")"^[[0m
+apk	Publish the APK to the rolling release	2026-11-24T05:42:40.9114206Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+apk	Publish the APK to the rolling release	2026-11-24T05:42:40.9114654Z env:
+apk	Publish the APK to the rolling release	2026-11-24T05:42:40.9114933Z   APP_REF: dev
+apk	Publish the APK to the rolling release	2026-11-24T05:42:40.9115161Z   TASK: :app:assembleDebug
+apk	Publish the APK to the rolling release	2026-11-24T05:42:40.9115485Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	Publish the APK to the rolling release	2026-11-24T05:42:40.9115912Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	Publish the APK to the rolling release	2026-11-24T05:42:40.9118111Z   GH_TOKEN: ***
+apk	Publish the APK to the rolling release	2026-11-24T05:42:40.9118502Z ##[endgroup]
+apk	Publish the APK to the rolling release	2026-11-24T05:42:44.3002220Z HTTP 403: Resource not accessible by integration (https://api.github.com/repos/ltg20080102/unixnu-droidvm-build/releases)
+apk	Publish the APK to the rolling release	2026-11-24T05:42:44.3031322Z ##[error]Process completed with exit code 1.
+apk	Upload the build log when it failed	﻿2026-11-24T05:42:44.3076907Z ##[group]Run actions/upload-artifact@v4
+apk	Upload the build log when it failed	2026-11-24T05:42:44.3077231Z with:
+apk	Upload the build log when it failed	2026-11-24T05:42:44.3077471Z   name: DroidVM-dev-build-log
+apk	Upload the build log when it failed	2026-11-24T05:42:44.3077737Z   path: DroidVM/build.log
+apk	Upload the build log when it failed	2026-11-24T05:42:44.3078023Z   compression-level: 0
+apk	Upload the build log when it failed	2026-11-24T05:42:44.3078269Z   retention-days: 14
+apk	Upload the build log when it failed	2026-11-24T05:42:44.3078526Z   if-no-files-found: warn
+apk	Upload the build log when it failed	2026-11-24T05:42:44.3078768Z   overwrite: false
+apk	Upload the build log when it failed	2026-11-24T05:42:44.3079380Z   include-hidden-files: false
+apk	Upload the build log when it failed	2026-11-24T05:42:44.3079656Z env:
+apk	Upload the build log when it failed	2026-11-24T05:42:44.3079859Z   APP_REF: dev
+apk	Upload the build log when it failed	2026-11-24T05:42:44.3080113Z   TASK: :app:assembleDebug
+apk	Upload the build log when it failed	2026-11-24T05:42:44.3080444Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	Upload the build log when it failed	2026-11-24T05:42:44.3080983Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	Upload the build log when it failed	2026-11-24T05:42:44.3081364Z ##[endgroup]
+apk	Upload the build log when it failed	2026-11-24T05:42:44.4351761Z (node:9566) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+apk	Upload the build log when it failed	2026-11-24T05:42:44.4352480Z (Use `node --trace-deprecation ...` to show where the warning was created)
+apk	Upload the build log when it failed	2026-11-24T05:42:44.4386349Z With the provided path, there will be 1 file uploaded
+apk	Upload the build log when it failed	2026-11-24T05:42:44.4390284Z Artifact name is valid!
+apk	Upload the build log when it failed	2026-11-24T05:42:44.4391109Z Root directory input is valid!
+apk	Upload the build log when it failed	2026-11-24T05:42:44.8147006Z Beginning upload of artifact content to blob storage
+apk	Upload the build log when it failed	2026-11-24T05:42:44.8277348Z (node:9566) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+apk	Upload the build log when it failed	2026-11-24T05:42:45.2320471Z Uploaded bytes 21716
+apk	Upload the build log when it failed	2026-11-24T05:42:45.3222770Z Finished uploading artifact content to blob storage!
+apk	Upload the build log when it failed	2026-11-24T05:42:45.3223521Z SHA256 digest of uploaded artifact zip is fec14eb1b2f3adad3eba22b9be1753549fc5f2b2a4acbce79c6aa705e8878239
+apk	Upload the build log when it failed	2026-11-24T05:42:45.3224357Z Finalizing artifact upload
+apk	Upload the build log when it failed	2026-11-24T05:42:45.7121721Z Artifact DroidVM-dev-build-log.zip successfully finalized. Artifact ID 14893971010
+apk	Upload the build log when it failed	2026-11-24T05:42:45.7122709Z Artifact DroidVM-dev-build-log has been successfully uploaded! Final size is 21716 bytes. Artifact ID is 14893971010
+apk	Upload the build log when it failed	2026-11-24T05:42:45.7128064Z Artifact download URL: https://github.com/ltg20080102/unixnu-droidvm-build/actions/runs/45334347093/artifacts/14893971010
+apk	Post JDK 21	﻿2026-11-24T05:42:45.7296334Z Post job cleanup.
+apk	Post JDK 21	2026-11-24T05:42:45.8320077Z (node:9578) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+apk	Post JDK 21	2026-11-24T05:42:45.8320928Z (Use `node --trace-deprecation ...` to show where the warning was created)
+apk	Post Run actions/checkout@v4	﻿2026-11-24T05:42:45.8468441Z Post job cleanup.
+apk	Post Run actions/checkout@v4	2026-11-24T05:42:45.9141904Z [command]/usr/bin/git version
+apk	Post Run actions/checkout@v4	2026-11-24T05:42:45.9180071Z git version 2.56.1
+apk	Post Run actions/checkout@v4	2026-11-24T05:42:45.9213163Z Temporarily overriding HOME='/home/runner/work/_temp/48b7a69d-6dea-40b7-977b-b9a9e2b2876e' before making global git config changes
+apk	Post Run actions/checkout@v4	2026-11-24T05:42:45.9214181Z Adding repository directory to the temporary git global config as a safe directory
+apk	Post Run actions/checkout@v4	2026-11-24T05:42:45.9218075Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build
+apk	Post Run actions/checkout@v4	2026-11-24T05:42:45.9251498Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+apk	Post Run actions/checkout@v4	2026-11-24T05:42:45.9279306Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+apk	Post Run actions/checkout@v4	2026-11-24T05:42:45.9447354Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+apk	Post Run actions/checkout@v4	2026-11-24T05:42:45.9476081Z http.https://github.com/.extraheader
+apk	Post Run actions/checkout@v4	2026-11-24T05:42:45.9478271Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+apk	Post Run actions/checkout@v4	2026-11-24T05:42:45.9502036Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+apk	Post Run actions/checkout@v4	2026-11-24T05:42:45.9663128Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+apk	Post Run actions/checkout@v4	2026-11-24T05:42:45.9692579Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+apk	Complete job	﻿2026-11-24T05:42:46.0007077Z Cleaning up orphan processes
+apk	Complete job	2026-11-24T05:42:46.0259422Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-java@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
