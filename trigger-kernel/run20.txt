@@ -1,0 +1,13 @@
+run20: pin the Data volume UUID to this phone's payload, not the author's.
+
+run19's kernel (kernel-20261124-r45400560466) boots past the vm_map hole panic and past
+exec launchd, then panics in load_init_program:
+
+  panic: offline scratch Data mount failed: 2 @kern_exec.c:8332
+
+2 = ENOENT: the kernel looks for a Data volume with DATA_VOLUME_UUID
+C9B8D4FB-631D-44C4-90AA-35C392D4B8E5 and the payload's seed carries
+5824EFA5-F947-472C-8252-7BCBEF71C6A4 instead (binary match at 0x29070 in
+Payloads/scratch-data.img, the same UUID the guest's OwnerData volume has had all along).
+
+Only the env value changes; the payload, its trust cache and its ADT are untouched.
