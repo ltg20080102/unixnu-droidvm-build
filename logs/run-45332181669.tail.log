@@ -1,0 +1,438 @@
+apk	Set up job	﻿2026-11-24T05:16:50.6706734Z Current runner version: '2.338.2'
+apk	Set up job	2026-11-24T05:16:50.6723731Z ##[group]Runner Image Provisioner
+apk	Set up job	2026-11-24T05:16:50.6724427Z Hosted Compute Agent
+apk	Set up job	2026-11-24T05:16:50.6725121Z Version: 20261111.635
+apk	Set up job	2026-11-24T05:16:50.6725660Z Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed
+apk	Set up job	2026-11-24T05:16:50.6726208Z Build Date: 2026-11-11T01:49:01Z
+apk	Set up job	2026-11-24T05:16:50.6726701Z Worker ID: {5480b76b-b34e-4187-8d0a-15a6a7b56c84}
+apk	Set up job	2026-11-24T05:16:50.6727204Z Region: us-west-2
+apk	Set up job	2026-11-24T05:16:50.6727590Z Cloud: AWS
+apk	Set up job	2026-11-24T05:16:50.6728221Z ##[endgroup]
+apk	Set up job	2026-11-24T05:16:50.6729205Z ##[group]Operating System
+apk	Set up job	2026-11-24T05:16:50.6729646Z Ubuntu
+apk	Set up job	2026-11-24T05:16:50.6730020Z 24.04.5
+apk	Set up job	2026-11-24T05:16:50.6730400Z LTS
+apk	Set up job	2026-11-24T05:16:50.6730770Z ##[endgroup]
+apk	Set up job	2026-11-24T05:16:50.6731174Z ##[group]Runner Image
+apk	Set up job	2026-11-24T05:16:50.6731587Z Image: ubuntu-24.04
+apk	Set up job	2026-11-24T05:16:50.6731995Z Version: 20261116.133.1
+apk	Set up job	2026-11-24T05:16:50.6732763Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261116.133/images/ubuntu/Ubuntu2404-Readme.md
+apk	Set up job	2026-11-24T05:16:50.6734040Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261116.133
+apk	Set up job	2026-11-24T05:16:50.6734921Z ##[endgroup]
+apk	Set up job	2026-11-24T05:16:50.6735817Z ##[group]GITHUB_TOKEN Permissions
+apk	Set up job	2026-11-24T05:16:50.6737386Z Contents: read
+apk	Set up job	2026-11-24T05:16:50.6737807Z Metadata: read
+apk	Set up job	2026-11-24T05:16:50.6738201Z Packages: read
+apk	Set up job	2026-11-24T05:16:50.6738598Z ##[endgroup]
+apk	Set up job	2026-11-24T05:16:50.6740221Z Secret source: Actions
+apk	Set up job	2026-11-24T05:16:50.6740883Z Cache mode: write
+apk	Set up job	2026-11-24T05:16:50.6741365Z Prepare workflow directory
+apk	Set up job	2026-11-24T05:16:50.7099046Z Prepare all required actions
+apk	Set up job	2026-11-24T05:16:50.7134651Z Getting action download info
+apk	Set up job	2026-11-24T05:16:51.1053028Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+apk	Set up job	2026-11-24T05:16:52.6249826Z Download action repository 'actions/setup-java@v4' (SHA:cf277c60eb25467037889841efdb72551f06f6c3)
+apk	Set up job	2026-11-24T05:16:53.0439929Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+apk	Set up job	2026-11-24T05:16:53.2945355Z Complete job name: apk
+apk	Run actions/checkout@v4	﻿2026-11-24T05:16:53.3635643Z ##[group]Run actions/checkout@v4
+apk	Run actions/checkout@v4	2026-11-24T05:16:53.3636793Z with:
+apk	Run actions/checkout@v4	2026-11-24T05:16:53.3637595Z   repository: ltg20080102/unixnu-droidvm-build
+apk	Run actions/checkout@v4	2026-11-24T05:16:53.3643553Z   token: ***
+apk	Run actions/checkout@v4	2026-11-24T05:16:53.3644328Z   ssh-strict: true
+apk	Run actions/checkout@v4	2026-11-24T05:16:53.3645253Z   ssh-user: git
+apk	Run actions/checkout@v4	2026-11-24T05:16:53.3646002Z   persist-credentials: true
+apk	Run actions/checkout@v4	2026-11-24T05:16:53.3646815Z   clean: true
+apk	Run actions/checkout@v4	2026-11-24T05:16:53.3647546Z   sparse-checkout-cone-mode: true
+apk	Run actions/checkout@v4	2026-11-24T05:16:53.3648431Z   fetch-depth: 1
+apk	Run actions/checkout@v4	2026-11-24T05:16:53.3649163Z   fetch-tags: false
+apk	Run actions/checkout@v4	2026-11-24T05:16:53.3649913Z   show-progress: true
+apk	Run actions/checkout@v4	2026-11-24T05:16:53.3650680Z   lfs: false
+apk	Run actions/checkout@v4	2026-11-24T05:16:53.3651355Z   submodules: false
+apk	Run actions/checkout@v4	2026-11-24T05:16:53.3652097Z   set-safe-directory: true
+apk	Run actions/checkout@v4	2026-11-24T05:16:53.3652952Z   allow-unsafe-pr-checkout: false
+apk	Run actions/checkout@v4	2026-11-24T05:16:53.3653978Z env:
+apk	Run actions/checkout@v4	2026-11-24T05:16:53.3654660Z   APP_REF: dev
+apk	Run actions/checkout@v4	2026-11-24T05:16:53.3655598Z   TASK: assembleDebug
+apk	Run actions/checkout@v4	2026-11-24T05:16:53.3656411Z ##[endgroup]
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.1809430Z Syncing repository: ltg20080102/unixnu-droidvm-build
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.1811375Z ##[group]Getting Git version info
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.1812125Z Working directory is '/home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build'
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.1813020Z [command]/usr/bin/git version
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.4738680Z git version 2.56.1
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.4754531Z ##[endgroup]
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.4766803Z Temporarily overriding HOME='/home/runner/work/_temp/0749d48a-dedc-4d33-82bd-c4043d3ee53d' before making global git config changes
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.4767828Z Adding repository directory to the temporary git global config as a safe directory
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.4771441Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5314621Z Deleting the contents of '/home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build'
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5320970Z ##[group]Initializing the repository
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5323692Z [command]/usr/bin/git init /home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5865896Z hint: Using 'master' as the name for the initial branch. This default branch name
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5866787Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5867297Z hint: to use in all of your new repositories, which will suppress this warning,
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5867772Z hint: call:
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5868096Z hint:
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5868443Z hint: 	git config --global init.defaultBranch <name>
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5868795Z hint:
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5869163Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5869681Z hint: 'development'. The just-created branch can be renamed via this command:
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5870129Z hint:
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5870396Z hint: 	git branch -m <name>
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5870743Z hint:
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5871153Z hint: Disable this message with "git config set advice.defaultBranchName false"
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5880123Z Initialized empty Git repository in /home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build/.git/
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5888404Z [command]/usr/bin/git remote add origin https://github.com/ltg20080102/unixnu-droidvm-build
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5939566Z ##[endgroup]
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5940414Z ##[group]Disabling automatic garbage collection
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5942524Z [command]/usr/bin/git config --local gc.auto 0
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5964313Z ##[endgroup]
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5965052Z ##[group]Setting up auth
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5968912Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.5995702Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.8530392Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.8566147Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.8707703Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.8731087Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.8882567Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.8903435Z ##[endgroup]
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.8903822Z ##[group]Fetching the repository
+apk	Run actions/checkout@v4	2026-11-24T05:16:57.8915233Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +4a23ae801bb8523ac52bb0e304dc91ae4a230520:refs/remotes/origin/main
+apk	Run actions/checkout@v4	2026-11-24T05:16:58.5981248Z From https://github.com/ltg20080102/unixnu-droidvm-build
+apk	Run actions/checkout@v4	2026-11-24T05:16:58.5982115Z  * [new ref]         4a23ae801bb8523ac52bb0e304dc91ae4a230520 -> origin/main
+apk	Run actions/checkout@v4	2026-11-24T05:16:58.5985713Z ##[endgroup]
+apk	Run actions/checkout@v4	2026-11-24T05:16:58.5986272Z ##[group]Determining the checkout info
+apk	Run actions/checkout@v4	2026-11-24T05:16:58.5991900Z ##[endgroup]
+apk	Run actions/checkout@v4	2026-11-24T05:16:58.5995487Z [command]/usr/bin/git sparse-checkout disable
+apk	Run actions/checkout@v4	2026-11-24T05:16:58.6054465Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+apk	Run actions/checkout@v4	2026-11-24T05:16:58.6080257Z ##[group]Checking out the ref
+apk	Run actions/checkout@v4	2026-11-24T05:16:58.6082620Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+apk	Run actions/checkout@v4	2026-11-24T05:16:58.6501652Z Switched to a new branch 'main'
+apk	Run actions/checkout@v4	2026-11-24T05:16:58.6507702Z branch 'main' set up to track 'origin/main'.
+apk	Run actions/checkout@v4	2026-11-24T05:16:58.6512272Z ##[endgroup]
+apk	Run actions/checkout@v4	2026-11-24T05:16:58.6543865Z [command]/usr/bin/git log -1 --format=%H
+apk	Run actions/checkout@v4	2026-11-24T05:16:58.6561900Z 4a23ae801bb8523ac52bb0e304dc91ae4a230520
+apk	Checkout the app with its submodules	﻿2026-11-24T05:16:58.6724576Z ##[group]Run set -euo pipefail
+apk	Checkout the app with its submodules	2026-11-24T05:16:58.6725352Z ^[[36;1mset -euo pipefail^[[0m
+apk	Checkout the app with its submodules	2026-11-24T05:16:58.6725802Z ^[[36;1mgit clone --depth 1 -b "$APP_REF" https://github.com/Droid-VM/DroidVM DroidVM^[[0m
+apk	Checkout the app with its submodules	2026-11-24T05:16:58.6726177Z ^[[36;1mcd DroidVM^[[0m
+apk	Checkout the app with its submodules	2026-11-24T05:16:58.6726519Z ^[[36;1mgit submodule update --init --depth 1 --recursive 2>&1 | tail -5^[[0m
+apk	Checkout the app with its submodules	2026-11-24T05:16:58.6726838Z ^[[36;1mecho "== submodules"^[[0m
+apk	Checkout the app with its submodules	2026-11-24T05:16:58.6727122Z ^[[36;1mgit submodule status | cut -c1-100^[[0m
+apk	Checkout the app with its submodules	2026-11-24T05:16:58.6727489Z ^[[36;1mecho "== jsoncpp pin"; git ls-tree HEAD app/src/main/cpp/jsoncpp^[[0m
+apk	Checkout the app with its submodules	2026-11-24T05:16:58.6727876Z ^[[36;1mecho "== daemon pin";  git ls-tree HEAD daemon^[[0m
+apk	Checkout the app with its submodules	2026-11-24T05:16:58.6728232Z ^[[36;1mls -d daemon app/src/main/assets/prebuilts 2>/dev/null || true^[[0m
+apk	Checkout the app with its submodules	2026-11-24T05:16:58.9538848Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+apk	Checkout the app with its submodules	2026-11-24T05:16:58.9539439Z env:
+apk	Checkout the app with its submodules	2026-11-24T05:16:58.9539697Z   APP_REF: dev
+apk	Checkout the app with its submodules	2026-11-24T05:16:58.9539966Z   TASK: assembleDebug
+apk	Checkout the app with its submodules	2026-11-24T05:16:58.9540311Z ##[endgroup]
+apk	Checkout the app with its submodules	2026-11-24T05:16:58.9619407Z Cloning into 'DroidVM'...
+apk	Checkout the app with its submodules	2026-11-24T05:17:20.1481349Z  * branch            ed9837be86c189186c4d2c08c11fed59c53082ed -> FETCH_HEAD
+apk	Checkout the app with its submodules	2026-11-24T05:17:20.1482050Z Submodule path 'daemon': checked out 'ed9837be86c189186c4d2c08c11fed59c53082ed'
+apk	Checkout the app with its submodules	2026-11-24T05:17:20.1482564Z From https://github.com/Droid-VM/DroidVM-WebUI
+apk	Checkout the app with its submodules	2026-11-24T05:17:20.1483009Z  * branch            fadada8ac2f54a8f7ebab95a52cd5b1a04b571f4 -> FETCH_HEAD
+apk	Checkout the app with its submodules	2026-11-24T05:17:20.1483565Z Submodule path 'webui': checked out 'fadada8ac2f54a8f7ebab95a52cd5b1a04b571f4'
+apk	Checkout the app with its submodules	2026-11-24T05:17:20.1484376Z == submodules
+apk	Checkout the app with its submodules	2026-11-24T05:17:20.1886884Z  fba4acdc0db8fa6a5c649b8e82eb9c31bf5c06fc app/src/main/assets/prebuilts (fba4acd)
+apk	Checkout the app with its submodules	2026-11-24T05:17:20.1887495Z  3455302847cf1e4671f1d8f5fa953fd46a7b1404 app/src/main/cpp/jsoncpp (3455302)
+apk	Checkout the app with its submodules	2026-11-24T05:17:20.1887984Z  1ee1a4afcb5322db0e64f6ec6b00dac5a06af94b app/src/main/cpp/libvncserver (1ee1a4a)
+apk	Checkout the app with its submodules	2026-11-24T05:17:20.1889067Z  6cec94b5634e1c9025af17527688f502f523fd25 app/src/main/cpp/udisasm (heads/master)
+apk	Checkout the app with its submodules	2026-11-24T05:17:20.1889557Z  ed9837be86c189186c4d2c08c11fed59c53082ed daemon (ed9837b)
+apk	Checkout the app with its submodules	2026-11-24T05:17:20.1889943Z  fadada8ac2f54a8f7ebab95a52cd5b1a04b571f4 webui (fadada8)
+apk	Checkout the app with its submodules	2026-11-24T05:17:20.1890263Z == jsoncpp pin
+apk	Checkout the app with its submodules	2026-11-24T05:17:20.1900386Z 160000 commit 3455302847cf1e4671f1d8f5fa953fd46a7b1404	app/src/main/cpp/jsoncpp
+apk	Checkout the app with its submodules	2026-11-24T05:17:20.1901869Z == daemon pin
+apk	Checkout the app with its submodules	2026-11-24T05:17:20.1911478Z 160000 commit ed9837be86c189186c4d2c08c11fed59c53082ed	daemon
+apk	Checkout the app with its submodules	2026-11-24T05:17:20.1922020Z app/src/main/assets/prebuilts
+apk	Checkout the app with its submodules	2026-11-24T05:17:20.1922312Z daemon
+apk	JDK 21	﻿2026-11-24T05:17:20.2009719Z ##[group]Run actions/setup-java@v4
+apk	JDK 21	2026-11-24T05:17:20.2009932Z with:
+apk	JDK 21	2026-11-24T05:17:20.2010085Z   distribution: temurin
+apk	JDK 21	2026-11-24T05:17:20.2010255Z   java-version: 21
+apk	JDK 21	2026-11-24T05:17:20.2010415Z   java-package: jdk
+apk	JDK 21	2026-11-24T05:17:20.2010573Z   check-latest: false
+apk	JDK 21	2026-11-24T05:17:20.2010732Z   server-id: github
+apk	JDK 21	2026-11-24T05:17:20.2010912Z   server-username: GITHUB_ACTOR
+apk	JDK 21	2026-11-24T05:17:20.2011105Z   server-password: GITHUB_TOKEN
+apk	JDK 21	2026-11-24T05:17:20.2011297Z   overwrite-settings: true
+apk	JDK 21	2026-11-24T05:17:20.2011482Z   job-status: success
+apk	JDK 21	2026-11-24T05:17:20.2013107Z   token: ***
+apk	JDK 21	2026-11-24T05:17:20.2013251Z env:
+apk	JDK 21	2026-11-24T05:17:20.2013390Z   APP_REF: dev
+apk	JDK 21	2026-11-24T05:17:20.2013539Z   TASK: assembleDebug
+apk	JDK 21	2026-11-24T05:17:20.2013795Z ##[endgroup]
+apk	JDK 21	2026-11-24T05:17:20.3607118Z ##[warning]setup-java v4 is deprecated and will no longer receive updates. Please migrate to actions/setup-java@v5.
+apk	JDK 21	2026-11-24T05:17:20.3612717Z ##[group]Installed distributions
+apk	JDK 21	2026-11-24T05:17:20.4008809Z Resolved Java 21.0.13+9 from tool-cache
+apk	JDK 21	2026-11-24T05:17:20.4009281Z Setting Java 21.0.13+9 as the default
+apk	JDK 21	2026-11-24T05:17:20.4015944Z (node:2522) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+apk	JDK 21	2026-11-24T05:17:20.4016966Z (Use `node --trace-deprecation ...` to show where the warning was created)
+apk	JDK 21	2026-11-24T05:17:20.4018805Z Creating toolchains.xml for JDK version 21 from temurin
+apk	JDK 21	2026-11-24T05:17:20.4070321Z Writing to /home/runner/.m2/toolchains.xml
+apk	JDK 21	2026-11-24T05:17:20.4070618Z 
+apk	JDK 21	2026-11-24T05:17:20.4070725Z Java configuration:
+apk	JDK 21	2026-11-24T05:17:20.4070950Z   Distribution: temurin
+apk	JDK 21	2026-11-24T05:17:20.4071183Z   Version: 21.0.13+9
+apk	JDK 21	2026-11-24T05:17:20.4071517Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	JDK 21	2026-11-24T05:17:20.4071839Z 
+apk	JDK 21	2026-11-24T05:17:20.4072172Z ##[endgroup]
+apk	JDK 21	2026-11-24T05:17:20.4090079Z Creating settings.xml with server-id: github
+apk	JDK 21	2026-11-24T05:17:20.4112714Z Writing to /home/runner/.m2/settings.xml
+apk	SDK packages	﻿2026-11-24T05:17:20.4216378Z ##[group]Run set -uo pipefail
+apk	SDK packages	2026-11-24T05:17:20.4216610Z ^[[36;1mset -uo pipefail^[[0m
+apk	SDK packages	2026-11-24T05:17:20.4216903Z ^[[36;1m# The runner image already carries the SDK and cmdline-tools; do not use^[[0m
+apk	SDK packages	2026-11-24T05:17:20.4217307Z ^[[36;1m# android-actions/setup-android, whose `sdkmanager tools` step fails on^[[0m
+apk	SDK packages	2026-11-24T05:17:20.4217771Z ^[[36;1m# cmdline-tools 16 ("Failed to find package 'tools'").^[[0m
+apk	SDK packages	2026-11-24T05:17:20.4218235Z ^[[36;1mexport PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/cmdline-tools/16.0/bin:$PATH"^[[0m
+apk	SDK packages	2026-11-24T05:17:20.4218633Z ^[[36;1msdkmanager --version^[[0m
+apk	SDK packages	2026-11-24T05:17:20.4218943Z ^[[36;1myes | sdkmanager --licenses >/dev/null 2>&1 || true^[[0m
+apk	SDK packages	2026-11-24T05:17:20.4219384Z ^[[36;1minstall() { echo "== sdkmanager $*"; yes | sdkmanager "$@" >/dev/null 2>&1 && echo ok || echo "MISSING: $*"; }^[[0m
+apk	SDK packages	2026-11-24T05:17:20.4219818Z ^[[36;1minstall "platform-tools"^[[0m
+apk	SDK packages	2026-11-24T05:17:20.4220100Z ^[[36;1minstall "platforms;android-37" || true^[[0m
+apk	SDK packages	2026-11-24T05:17:20.4220386Z ^[[36;1minstall "platforms;android-36"^[[0m
+apk	SDK packages	2026-11-24T05:17:20.4220771Z ^[[36;1minstall "build-tools;37.0.0" || true^[[0m
+apk	SDK packages	2026-11-24T05:17:20.4221044Z ^[[36;1minstall "build-tools;36.0.0"^[[0m
+apk	SDK packages	2026-11-24T05:17:20.4221309Z ^[[36;1minstall "cmake;3.22.1"^[[0m
+apk	SDK packages	2026-11-24T05:17:20.4221552Z ^[[36;1minstall "ndk;27.0.12077973"^[[0m
+apk	SDK packages	2026-11-24T05:17:20.4221793Z ^[[36;1minstall "ndk;28.2.13676358" || true^[[0m
+apk	SDK packages	2026-11-24T05:17:20.4222107Z ^[[36;1mls "$ANDROID_HOME/ndk" 2>/dev/null || true^[[0m
+apk	SDK packages	2026-11-24T05:17:20.4222440Z ^[[36;1mls "$ANDROID_HOME/platforms" 2>/dev/null || true^[[0m
+apk	SDK packages	2026-11-24T05:17:20.4252397Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+apk	SDK packages	2026-11-24T05:17:20.4252826Z env:
+apk	SDK packages	2026-11-24T05:17:20.4253054Z   APP_REF: dev
+apk	SDK packages	2026-11-24T05:17:20.4253284Z   TASK: assembleDebug
+apk	SDK packages	2026-11-24T05:17:20.4253603Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	SDK packages	2026-11-24T05:17:20.4254017Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	SDK packages	2026-11-24T05:17:20.4254377Z   ANDROID_HOME: /usr/local/lib/android/sdk
+apk	SDK packages	2026-11-24T05:17:20.4254726Z   ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+apk	SDK packages	2026-11-24T05:17:20.4255153Z ##[endgroup]
+apk	SDK packages	2026-11-24T05:17:27.2647089Z 12.0
+apk	SDK packages	2026-11-24T05:17:27.2647561Z 
+apk	SDK packages	2026-11-24T05:17:29.4253685Z yes: standard output: Broken pipe
+apk	SDK packages	2026-11-24T05:17:29.4255784Z == sdkmanager platform-tools
+apk	SDK packages	2026-11-24T05:17:31.2820030Z yes: standard output: Broken pipe
+apk	SDK packages	2026-11-24T05:17:31.2822015Z MISSING: platform-tools
+apk	SDK packages	2026-11-24T05:17:31.2822296Z == sdkmanager platforms;android-37
+apk	SDK packages	2026-11-24T05:17:32.3299561Z yes: standard output: Broken pipe
+apk	SDK packages	2026-11-24T05:17:32.3302322Z MISSING: platforms;android-37
+apk	SDK packages	2026-11-24T05:17:32.3302663Z == sdkmanager platforms;android-36
+apk	SDK packages	2026-11-24T05:17:33.4165444Z yes: standard output: Broken pipe
+apk	SDK packages	2026-11-24T05:17:33.4167523Z MISSING: platforms;android-36
+apk	SDK packages	2026-11-24T05:17:33.4167799Z == sdkmanager build-tools;37.0.0
+apk	SDK packages	2026-11-24T05:17:34.4848648Z yes: standard output: Broken pipe
+apk	SDK packages	2026-11-24T05:17:34.4851063Z MISSING: build-tools;37.0.0
+apk	SDK packages	2026-11-24T05:17:34.4851398Z == sdkmanager build-tools;36.0.0
+apk	SDK packages	2026-11-24T05:17:35.4422992Z yes: standard output: Broken pipe
+apk	SDK packages	2026-11-24T05:17:35.4425655Z MISSING: build-tools;36.0.0
+apk	SDK packages	2026-11-24T05:17:35.4426252Z == sdkmanager cmake;3.22.1
+apk	SDK packages	2026-11-24T05:17:37.6393669Z yes: standard output: Broken pipe
+apk	SDK packages	2026-11-24T05:17:37.6395516Z MISSING: cmake;3.22.1
+apk	SDK packages	2026-11-24T05:17:37.6396010Z == sdkmanager ndk;27.0.12077973
+apk	SDK packages	2026-11-24T05:17:50.9911538Z yes: standard output: Broken pipe
+apk	SDK packages	2026-11-24T05:17:50.9913662Z MISSING: ndk;27.0.12077973
+apk	SDK packages	2026-11-24T05:17:50.9914276Z == sdkmanager ndk;28.2.13676358
+apk	SDK packages	2026-11-24T05:18:04.1652143Z yes: standard output: Broken pipe
+apk	SDK packages	2026-11-24T05:18:04.1654287Z MISSING: ndk;28.2.13676358
+apk	SDK packages	2026-11-24T05:18:04.1667148Z 27.0.12077973
+apk	SDK packages	2026-11-24T05:18:04.1667454Z 27.3.13750724
+apk	SDK packages	2026-11-24T05:18:04.1667641Z 28.2.13676358
+apk	SDK packages	2026-11-24T05:18:04.1667810Z 29.0.14206865
+apk	SDK packages	2026-11-24T05:18:04.1667976Z 30.0.16248370
+apk	SDK packages	2026-11-24T05:18:04.1676386Z android-34
+apk	SDK packages	2026-11-24T05:18:04.1676579Z android-34-ext10
+apk	SDK packages	2026-11-24T05:18:04.1677134Z android-34-ext11
+apk	SDK packages	2026-11-24T05:18:04.1677284Z android-34-ext12
+apk	SDK packages	2026-11-24T05:18:04.1677474Z android-34-ext8
+apk	SDK packages	2026-11-24T05:18:04.1677693Z android-35
+apk	SDK packages	2026-11-24T05:18:04.1677870Z android-35-ext14
+apk	SDK packages	2026-11-24T05:18:04.1678044Z android-35-ext15
+apk	SDK packages	2026-11-24T05:18:04.1678221Z android-36
+apk	SDK packages	2026-11-24T05:18:04.1678383Z android-36-ext18
+apk	SDK packages	2026-11-24T05:18:04.1678699Z android-36-ext19
+apk	SDK packages	2026-11-24T05:18:04.1678895Z android-36.1
+apk	SDK packages	2026-11-24T05:18:04.1679132Z android-37.0
+apk	SDK packages	2026-11-24T05:18:04.1679307Z android-37.1
+apk	SDK packages	2026-11-24T05:18:04.1679485Z android-37.2
+apk	SDK packages	2026-11-24T05:18:04.1679708Z android-37.2-beta1
+apk	SDK packages	2026-11-24T05:18:04.1679892Z android-37.2-beta2
+apk	SDK packages	2026-11-24T05:18:04.1680051Z android-37.2-beta3
+apk	Build	﻿2026-11-24T05:18:04.1702096Z ##[group]Run set -uo pipefail
+apk	Build	2026-11-24T05:18:04.1702337Z ^[[36;1mset -uo pipefail^[[0m
+apk	Build	2026-11-24T05:18:04.1702516Z ^[[36;1mchmod +x gradlew^[[0m
+apk	Build	2026-11-24T05:18:04.1702782Z ^[[36;1m./gradlew "$TASK" --no-daemon --stacktrace 2>&1 | tee build.log | tail -120^[[0m
+apk	Build	2026-11-24T05:18:04.1703081Z ^[[36;1mecho "== rc=${PIPESTATUS[0]}"^[[0m
+apk	Build	2026-11-24T05:18:04.1703279Z ^[[36;1mtest -f build.log^[[0m
+apk	Build	2026-11-24T05:18:04.1730065Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+apk	Build	2026-11-24T05:18:04.1730320Z env:
+apk	Build	2026-11-24T05:18:04.1730473Z   APP_REF: dev
+apk	Build	2026-11-24T05:18:04.1730634Z   TASK: assembleDebug
+apk	Build	2026-11-24T05:18:04.1730875Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	Build	2026-11-24T05:18:04.1731235Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	Build	2026-11-24T05:18:04.1731501Z ##[endgroup]
+apk	Build	2026-11-24T05:19:12.2998958Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:328)
+apk	Build	2026-11-24T05:19:12.3000066Z 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
+apk	Build	2026-11-24T05:19:12.3000608Z 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
+apk	Build	2026-11-24T05:19:12.3001219Z 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+apk	Build	2026-11-24T05:19:12.3001831Z 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+apk	Build	2026-11-24T05:19:12.3002399Z Caused by: org.gradle.process.ProcessExecutionException: Process 'command 'npm'' finished with non-zero exit value 1
+apk	Build	2026-11-24T05:19:12.3003015Z 	at org.gradle.process.internal.DefaultExecHandle$ExecResultImpl.assertNormalExitValue(DefaultExecHandle.java:460)
+apk	Build	2026-11-24T05:19:12.3003550Z 	at org.gradle.process.internal.DefaultExecAction.execute(DefaultExecAction.java:49)
+apk	Build	2026-11-24T05:19:12.3003964Z 	at org.gradle.api.tasks.AbstractExecTask.exec(AbstractExecTask.java:68)
+apk	Build	2026-11-24T05:19:12.3004346Z 	at org.gradle.internal.reflect.JavaMethod.invoke(JavaMethod.java:125)
+apk	Build	2026-11-24T05:19:12.3004987Z 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.doExecute(StandardTaskAction.java:58)
+apk	Build	2026-11-24T05:19:12.3005695Z 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:51)
+apk	Build	2026-11-24T05:19:12.3006405Z 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:29)
+apk	Build	2026-11-24T05:19:12.3007036Z 	at org.gradle.api.internal.tasks.execution.TaskExecution$3.run(TaskExecution.java:259)
+apk	Build	2026-11-24T05:19:12.3007751Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:30)
+apk	Build	2026-11-24T05:19:12.3008935Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:27)
+apk	Build	2026-11-24T05:19:12.3009891Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+apk	Build	2026-11-24T05:19:12.3010625Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+apk	Build	2026-11-24T05:19:12.3011224Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+apk	Build	2026-11-24T05:19:12.3011824Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+apk	Build	2026-11-24T05:19:12.3012385Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:48)
+apk	Build	2026-11-24T05:19:12.3012908Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeAction(TaskExecution.java:244)
+apk	Build	2026-11-24T05:19:12.3013416Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeActions(TaskExecution.java:227)
+apk	Build	2026-11-24T05:19:12.3013973Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeWithPreviousOutputFiles(TaskExecution.java:210)
+apk	Build	2026-11-24T05:19:12.3014509Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.execute(TaskExecution.java:176)
+apk	Build	2026-11-24T05:19:12.3015275Z 	at org.gradle.internal.execution.steps.ExecuteStep.executeInternal(ExecuteStep.java:167)
+apk	Build	2026-11-24T05:19:12.3015720Z 	at org.gradle.internal.execution.steps.ExecuteStep.access$000(ExecuteStep.java:47)
+apk	Build	2026-11-24T05:19:12.3016179Z 	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:137)
+apk	Build	2026-11-24T05:19:12.3016561Z 	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:134)
+apk	Build	2026-11-24T05:19:12.3017120Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+apk	Build	2026-11-24T05:19:12.3017855Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+apk	Build	2026-11-24T05:19:12.3018503Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+apk	Build	2026-11-24T05:19:12.3019106Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+apk	Build	2026-11-24T05:19:12.3019664Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+apk	Build	2026-11-24T05:19:12.3020230Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+apk	Build	2026-11-24T05:19:12.3020780Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+apk	Build	2026-11-24T05:19:12.3021455Z 	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:134)
+apk	Build	2026-11-24T05:19:12.3022011Z 	at org.gradle.internal.execution.steps.ExecuteStep$Mutable.execute(ExecuteStep.java:80)
+apk	Build	2026-11-24T05:19:12.3022576Z 	at org.gradle.internal.execution.steps.CancelExecutionStep.execute(CancelExecutionStep.java:42)
+apk	Build	2026-11-24T05:19:12.3023078Z 	at org.gradle.internal.execution.steps.TimeoutStep.executeWithoutTimeout(TimeoutStep.java:75)
+apk	Build	2026-11-24T05:19:12.3023528Z 	at org.gradle.internal.execution.steps.TimeoutStep.execute(TimeoutStep.java:55)
+apk	Build	2026-11-24T05:19:12.3024170Z 	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:51)
+apk	Build	2026-11-24T05:19:12.3024752Z 	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:29)
+apk	Build	2026-11-24T05:19:12.3025674Z 	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:67)
+apk	Build	2026-11-24T05:19:12.3026296Z 	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:39)
+apk	Build	2026-11-24T05:19:12.3026892Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+apk	Build	2026-11-24T05:19:12.3027401Z 	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:42)
+apk	Build	2026-11-24T05:19:12.3028011Z 	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:24)
+apk	Build	2026-11-24T05:19:12.3028656Z 	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:69)
+apk	Build	2026-11-24T05:19:12.3029340Z 	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:46)
+apk	Build	2026-11-24T05:19:12.3029972Z 	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:39)
+apk	Build	2026-11-24T05:19:12.3030655Z 	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:28)
+apk	Build	2026-11-24T05:19:12.3031171Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+apk	Build	2026-11-24T05:19:12.3031652Z 	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithoutCache(BuildCacheStep.java:189)
+apk	Build	2026-11-24T05:19:12.3032172Z 	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$1(BuildCacheStep.java:76)
+apk	Build	2026-11-24T05:19:12.3032569Z 	at org.gradle.internal.Either$Right.fold(Either.java:176)
+apk	Build	2026-11-24T05:19:12.3032997Z 	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:62)
+apk	Build	2026-11-24T05:19:12.3033434Z 	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:74)
+apk	Build	2026-11-24T05:19:12.3033878Z 	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:49)
+apk	Build	2026-11-24T05:19:12.3034502Z 	at org.gradle.internal.execution.steps.StoreExecutionStateStep.executeMutable(StoreExecutionStateStep.java:46)
+apk	Build	2026-11-24T05:19:12.3035278Z 	at org.gradle.internal.execution.steps.StoreExecutionStateStep.executeMutable(StoreExecutionStateStep.java:35)
+apk	Build	2026-11-24T05:19:12.3035792Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+apk	Build	2026-11-24T05:19:12.3036252Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:75)
+apk	Build	2026-11-24T05:19:12.3036749Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:53)
+apk	Build	2026-11-24T05:19:12.3037241Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53)
+apk	Build	2026-11-24T05:19:12.3037887Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35)
+apk	Build	2026-11-24T05:19:12.3038506Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
+apk	Build	2026-11-24T05:19:12.3039252Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)
+apk	Build	2026-11-24T05:19:12.3040020Z 	at org.gradle.internal.execution.steps.ResolveMutableCachingStateStep.executeDelegate(ResolveMutableCachingStateStep.java:70)
+apk	Build	2026-11-24T05:19:12.3040734Z 	at org.gradle.internal.execution.steps.ResolveMutableCachingStateStep.executeDelegate(ResolveMutableCachingStateStep.java:32)
+apk	Build	2026-11-24T05:19:12.3041401Z 	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:69)
+apk	Build	2026-11-24T05:19:12.3042052Z 	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:37)
+apk	Build	2026-11-24T05:19:12.3042642Z 	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:63)
+apk	Build	2026-11-24T05:19:12.3043174Z 	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:34)
+apk	Build	2026-11-24T05:19:12.3043648Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+apk	Build	2026-11-24T05:19:12.3044094Z 	at org.gradle.internal.execution.steps.ValidateStep$Mutable.executeDelegate(ValidateStep.java:79)
+apk	Build	2026-11-24T05:19:12.3044647Z 	at org.gradle.internal.execution.steps.ValidateStep$Mutable.executeDelegate(ValidateStep.java:65)
+apk	Build	2026-11-24T05:19:12.3045224Z 	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:105)
+apk	Build	2026-11-24T05:19:12.3045659Z 	at org.gradle.internal.execution.steps.ValidateStep$Mutable.execute(ValidateStep.java:65)
+apk	Build	2026-11-24T05:19:12.3046370Z 	at org.gradle.internal.execution.steps.CaptureMutableStateBeforeExecutionStep.executeMutable(CaptureMutableStateBeforeExecutionStep.java:86)
+apk	Build	2026-11-24T05:19:12.3047151Z 	at org.gradle.internal.execution.steps.CaptureMutableStateBeforeExecutionStep.execute(CaptureMutableStateBeforeExecutionStep.java:65)
+apk	Build	2026-11-24T05:19:12.3047897Z 	at org.gradle.internal.execution.steps.CaptureMutableStateBeforeExecutionStep.execute(CaptureMutableStateBeforeExecutionStep.java:45)
+apk	Build	2026-11-24T05:19:12.3048638Z 	at org.gradle.internal.execution.steps.SkipEmptyMutableWorkStep.executeWithNonEmptySources(SkipEmptyMutableWorkStep.java:210)
+apk	Build	2026-11-24T05:19:12.3049297Z 	at org.gradle.internal.execution.steps.SkipEmptyMutableWorkStep.executeMutable(SkipEmptyMutableWorkStep.java:85)
+apk	Build	2026-11-24T05:19:12.3049908Z 	at org.gradle.internal.execution.steps.SkipEmptyMutableWorkStep.executeMutable(SkipEmptyMutableWorkStep.java:53)
+apk	Build	2026-11-24T05:19:12.3050419Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+apk	Build	2026-11-24T05:19:12.3051050Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)
+apk	Build	2026-11-24T05:19:12.3051766Z 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.executeMutable(LoadPreviousExecutionStateStep.java:36)
+apk	Build	2026-11-24T05:19:12.3052458Z 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.executeMutable(LoadPreviousExecutionStateStep.java:23)
+apk	Build	2026-11-24T05:19:12.3053106Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+apk	Build	2026-11-24T05:19:12.3053596Z 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:77)
+apk	Build	2026-11-24T05:19:12.3054173Z 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:43)
+apk	Build	2026-11-24T05:19:12.3054669Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+apk	Build	2026-11-24T05:19:12.3055352Z 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.lambda$executeMutable$0(AssignMutableWorkspaceStep.java:34)
+apk	Build	2026-11-24T05:19:12.3055930Z 	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.java:305)
+apk	Build	2026-11-24T05:19:12.3056502Z 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.executeMutable(AssignMutableWorkspaceStep.java:30)
+apk	Build	2026-11-24T05:19:12.3057152Z 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.executeMutable(AssignMutableWorkspaceStep.java:21)
+apk	Build	2026-11-24T05:19:12.3057677Z 	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:26)
+apk	Build	2026-11-24T05:19:12.3058127Z 	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:40)
+apk	Build	2026-11-24T05:19:12.3058614Z 	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:23)
+apk	Build	2026-11-24T05:19:12.3059225Z 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execute$2(ExecuteWorkBuildOperationFiringStep.java:67)
+apk	Build	2026-11-24T05:19:12.3059997Z 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:67)
+apk	Build	2026-11-24T05:19:12.3060703Z 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:39)
+apk	Build	2026-11-24T05:19:12.3061288Z 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:46)
+apk	Build	2026-11-24T05:19:12.3061762Z 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:34)
+apk	Build	2026-11-24T05:19:12.3062213Z 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:56)
+apk	Build	2026-11-24T05:19:12.3062722Z 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:38)
+apk	Build	2026-11-24T05:19:12.3063184Z 	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:68)
+apk	Build	2026-11-24T05:19:12.3063767Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:132)
+apk	Build	2026-11-24T05:19:12.3064195Z 	... 30 more
+apk	Build	2026-11-24T05:19:12.3064281Z 
+apk	Build	2026-11-24T05:19:12.3064286Z 
+apk	Build	2026-11-24T05:19:12.3064471Z Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+apk	Build	2026-11-24T05:19:12.3064703Z 
+apk	Build	2026-11-24T05:19:12.3065168Z You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+apk	Build	2026-11-24T05:19:12.3065544Z 
+apk	Build	2026-11-24T05:19:12.3065885Z For more on this, please refer to https://docs.gradle.org/9.6.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+apk	Build	2026-11-24T05:19:12.3066273Z 
+apk	Build	2026-11-24T05:19:12.3066340Z BUILD FAILED in 1m 7s
+apk	Build	2026-11-24T05:19:12.3066527Z 9 actionable tasks: 9 executed
+apk	Build	2026-11-24T05:19:12.3070649Z ##[error]Process completed with exit code 1.
+apk	Upload the build log when it failed	﻿2026-11-24T05:19:12.3127722Z ##[group]Run actions/upload-artifact@v4
+apk	Upload the build log when it failed	2026-11-24T05:19:12.3127945Z with:
+apk	Upload the build log when it failed	2026-11-24T05:19:12.3128108Z   name: DroidVM-dev-build-log
+apk	Upload the build log when it failed	2026-11-24T05:19:12.3128313Z   path: DroidVM/build.log
+apk	Upload the build log when it failed	2026-11-24T05:19:12.3128503Z   compression-level: 0
+apk	Upload the build log when it failed	2026-11-24T05:19:12.3128670Z   retention-days: 14
+apk	Upload the build log when it failed	2026-11-24T05:19:12.3128849Z   if-no-files-found: warn
+apk	Upload the build log when it failed	2026-11-24T05:19:12.3129018Z   overwrite: false
+apk	Upload the build log when it failed	2026-11-24T05:19:12.3129181Z   include-hidden-files: false
+apk	Upload the build log when it failed	2026-11-24T05:19:12.3129350Z env:
+apk	Upload the build log when it failed	2026-11-24T05:19:12.3129497Z   APP_REF: dev
+apk	Upload the build log when it failed	2026-11-24T05:19:12.3129654Z   TASK: assembleDebug
+apk	Upload the build log when it failed	2026-11-24T05:19:12.3129887Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	Upload the build log when it failed	2026-11-24T05:19:12.3130236Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+apk	Upload the build log when it failed	2026-11-24T05:19:12.3130514Z ##[endgroup]
+apk	Upload the build log when it failed	2026-11-24T05:19:12.4356197Z (node:3323) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+apk	Upload the build log when it failed	2026-11-24T05:19:12.4356751Z (Use `node --trace-deprecation ...` to show where the warning was created)
+apk	Upload the build log when it failed	2026-11-24T05:19:12.4390807Z With the provided path, there will be 1 file uploaded
+apk	Upload the build log when it failed	2026-11-24T05:19:12.4407614Z Artifact name is valid!
+apk	Upload the build log when it failed	2026-11-24T05:19:12.4409913Z Root directory input is valid!
+apk	Upload the build log when it failed	2026-11-24T05:19:12.9990840Z Beginning upload of artifact content to blob storage
+apk	Upload the build log when it failed	2026-11-24T05:19:13.0122266Z (node:3323) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+apk	Upload the build log when it failed	2026-11-24T05:19:13.4214496Z Uploaded bytes 18385
+apk	Upload the build log when it failed	2026-11-24T05:19:13.5103733Z Finished uploading artifact content to blob storage!
+apk	Upload the build log when it failed	2026-11-24T05:19:13.5104402Z SHA256 digest of uploaded artifact zip is b8a87101375c0633c754d93e8ea866d2edc7b23f0ad3e17830c01ccd52c7fa0f
+apk	Upload the build log when it failed	2026-11-24T05:19:13.5105145Z Finalizing artifact upload
+apk	Upload the build log when it failed	2026-11-24T05:19:13.8595810Z Artifact DroidVM-dev-build-log.zip successfully finalized. Artifact ID 14891978952
+apk	Upload the build log when it failed	2026-11-24T05:19:13.8596419Z Artifact DroidVM-dev-build-log has been successfully uploaded! Final size is 18385 bytes. Artifact ID is 14891978952
+apk	Upload the build log when it failed	2026-11-24T05:19:13.8600665Z Artifact download URL: https://github.com/ltg20080102/unixnu-droidvm-build/actions/runs/45332181669/artifacts/14891978952
+apk	Post JDK 21	﻿2026-11-24T05:19:13.8753194Z Post job cleanup.
+apk	Post JDK 21	2026-11-24T05:19:13.9787298Z (node:3335) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+apk	Post JDK 21	2026-11-24T05:19:13.9788084Z (Use `node --trace-deprecation ...` to show where the warning was created)
+apk	Post Run actions/checkout@v4	﻿2026-11-24T05:19:13.9931294Z Post job cleanup.
+apk	Post Run actions/checkout@v4	2026-11-24T05:19:14.0574735Z [command]/usr/bin/git version
+apk	Post Run actions/checkout@v4	2026-11-24T05:19:14.0611860Z git version 2.56.1
+apk	Post Run actions/checkout@v4	2026-11-24T05:19:14.0642373Z Temporarily overriding HOME='/home/runner/work/_temp/84989832-578a-41b6-bccc-278f7e69d3a9' before making global git config changes
+apk	Post Run actions/checkout@v4	2026-11-24T05:19:14.0643191Z Adding repository directory to the temporary git global config as a safe directory
+apk	Post Run actions/checkout@v4	2026-11-24T05:19:14.0647706Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unixnu-droidvm-build/unixnu-droidvm-build
+apk	Post Run actions/checkout@v4	2026-11-24T05:19:14.0677298Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+apk	Post Run actions/checkout@v4	2026-11-24T05:19:14.0705879Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+apk	Post Run actions/checkout@v4	2026-11-24T05:19:14.0950237Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+apk	Post Run actions/checkout@v4	2026-11-24T05:19:14.0979323Z http.https://github.com/.extraheader
+apk	Post Run actions/checkout@v4	2026-11-24T05:19:14.0980211Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+apk	Post Run actions/checkout@v4	2026-11-24T05:19:14.1066188Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+apk	Post Run actions/checkout@v4	2026-11-24T05:19:14.1203539Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+apk	Post Run actions/checkout@v4	2026-11-24T05:19:14.1221065Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+apk	Complete job	﻿2026-11-24T05:19:14.1520060Z Cleaning up orphan processes
+apk	Complete job	2026-11-24T05:19:14.1732739Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-java@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
